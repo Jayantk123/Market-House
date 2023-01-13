@@ -2,12 +2,17 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ReactComponent as ArrowRightIcon } from "../assets/svg/keyboardArrowRightIcon.svg";
 import visibilityIcon from "../assets/svg/visibilityIcon.svg";
-
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
+import { db } from "../firebase.config";
 export default function Signup() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [formData, setFormData] = useState({
-   name:"",
+    name: "",
     email: "",
     password: "",
     confirmpassword: "",
@@ -21,6 +26,43 @@ export default function Signup() {
       [e.target.id]: e.target.value,
     }));
   };
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      if ((password === confirmpassword) & (password.length > 6)) {
+        const auth = getAuth();
+
+        const userCredential = await createUserWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+
+        const user = userCredential.user;
+
+        updateProfile(auth.currentUser, {
+          displayName: name,
+        });
+
+        navigate("/");
+      } else if ((password === confirmpassword) & (password.length < 6)) {
+        alert("Password length should be atleast 6 characters.");
+      } else {
+        alert("Your password and confirm password do not match!");
+        setFormData({
+          name: name,
+          email: email,
+          password: password,
+          confirmpassword: "",
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <div className="pageContainer">
@@ -28,9 +70,9 @@ export default function Signup() {
           <p className="pageHeader">Welcome Back!</p>
         </header>
 
-        <form>
-   {/* namea */}
-   <input
+        <form onSubmit={onSubmit}>
+          {/* namea */}
+          <input
             type="text"
             className="nameInput"
             placeholder="Name"
@@ -38,7 +80,6 @@ export default function Signup() {
             id="name"
             onChange={onChange}
           />
-
 
           {/* email */}
           <input
@@ -71,8 +112,7 @@ export default function Signup() {
             />
           </div>
 
-
-{/* confirm password */}
+          {/* confirm password */}
           <div className="passwordInputDiv">
             <input
               type={showConfirmPassword ? "text" : "password"}
@@ -92,8 +132,7 @@ export default function Signup() {
               }}
             />
           </div>
-{/* //////////////// */}
-
+          {/* //////////////// */}
 
           <Link to="/forgot-password" className="forgotPasswordLink">
             Forgot Password
@@ -107,7 +146,6 @@ export default function Signup() {
           </div>
         </form>
 
-        
         {/* g oauth */}
         <Link to="/sign-in" className="registerLink">
           Sign In Instead
