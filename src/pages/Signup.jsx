@@ -34,6 +34,7 @@ export default function Signup() {
     try {
       if ((password === confirmpassword) & (password.length >= 6)) {
         const auth = getAuth();
+        console.log(auth);
 
         const userCredential = await createUserWithEmailAndPassword(
           auth,
@@ -41,6 +42,8 @@ export default function Signup() {
           password
         );
 
+        sessionStorage.setItem('Auth_Token',userCredential._tokenResponse.refreshToken);
+        console.log(userCredential._tokenResponse.refreshToken);
         const user = userCredential.user;
 
         updateProfile(auth.currentUser, {
@@ -52,8 +55,10 @@ export default function Signup() {
         delete uploadingFormData.confirmpassword;
         uploadingFormData.timestamp = serverTimestamp();
 
+        // save user to firestore database
         await setDoc(doc(db, "users", user.uid), uploadingFormData);
 
+        // redirected to explore page
         navigate("/");
       } else if ((password === confirmpassword) & (password.length < 6)) {
         alert("Password length should be atleast 6 characters.");

@@ -2,13 +2,12 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ReactComponent as ArrowRightIcon } from "../assets/svg/keyboardArrowRightIcon.svg";
 import visibilityIcon from "../assets/svg/visibilityIcon.svg";
-
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 export default function Signin() {
   const [showPassword, setShowPassword] = useState(false);
-    const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState({
     email: "",
     password: "",
-
   });
   const { email, password } = formData;
   const navigate = useNavigate();
@@ -19,6 +18,31 @@ export default function Signin() {
       [e.target.id]: e.target.value,
     }));
   };
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const auth = getAuth();
+
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      if (userCredential.user) {
+        navigate("/");
+      }
+      console.log(userCredential);
+      sessionStorage.setItem(
+        "Auth_Token",
+        userCredential._tokenResponse.refreshToken
+      );
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <>
       <div className="pageContainer">
@@ -26,7 +50,7 @@ export default function Signin() {
           <p className="pageHeader">Welcome Back!</p>
         </header>
 
-        <form>
+        <form onSubmit={onSubmit}>
           {/* email */}
           <input
             type="email"
@@ -58,9 +82,7 @@ export default function Signin() {
             />
           </div>
 
-
-{/* //////////////// */}
-
+          {/* //////////////// */}
 
           <Link to="/forgot-password" className="forgotPasswordLink">
             Forgot Password
@@ -73,7 +95,6 @@ export default function Signin() {
             </button>
           </div>
         </form>
-
 
         {/* g oauth */}
         <Link to="/sign-up" className="registerLink">
