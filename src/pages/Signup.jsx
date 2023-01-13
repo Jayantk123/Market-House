@@ -7,6 +7,7 @@ import {
   createUserWithEmailAndPassword,
   updateProfile,
 } from "firebase/auth";
+import { doc, setDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "../firebase.config";
 export default function Signup() {
   const [showPassword, setShowPassword] = useState(false);
@@ -31,7 +32,7 @@ export default function Signup() {
     e.preventDefault();
 
     try {
-      if ((password === confirmpassword) & (password.length > 6)) {
+      if ((password === confirmpassword) & (password.length >= 6)) {
         const auth = getAuth();
 
         const userCredential = await createUserWithEmailAndPassword(
@@ -45,6 +46,13 @@ export default function Signup() {
         updateProfile(auth.currentUser, {
           displayName: name,
         });
+
+        const uploadingFormData = { ...formData };
+        delete uploadingFormData.password;
+        delete uploadingFormData.confirmpassword;
+        uploadingFormData.timestamp = serverTimestamp();
+
+        await setDoc(doc(db, "users", user.uid), uploadingFormData);
 
         navigate("/");
       } else if ((password === confirmpassword) & (password.length < 6)) {
