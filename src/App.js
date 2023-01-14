@@ -7,7 +7,8 @@ import Profile from "./pages/Profile";
 import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
 import Navbar from "./Components/Navbar";
-
+import { ToastContainer } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 export default function App() {
   return (
     <>
@@ -24,6 +25,7 @@ export default function App() {
         </Routes>
         <Navbar />
       </Router>
+      <ToastContainer />
     </>
   );
 }

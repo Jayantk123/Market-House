@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ReactComponent as ArrowRightIcon } from "../assets/svg/keyboardArrowRightIcon.svg";
 import visibilityIcon from "../assets/svg/visibilityIcon.svg";
+import {toast} from 'react-toastify'
+
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -61,9 +63,9 @@ export default function Signup() {
         // redirected to explore page
         navigate("/");
       } else if ((password === confirmpassword) & (password.length < 6)) {
-        alert("Password length should be atleast 6 characters.");
+        toast.error("Password length should be atleast 6 characters.");
       } else {
-        alert("Your password and confirm password do not match!");
+        toast.error("Your password and confirm password do not match!");
         setFormData({
           name: name,
           email: email,
@@ -72,7 +74,7 @@ export default function Signup() {
         });
       }
     } catch (error) {
-      console.log(error);
+      toast.error('Bad User Credentials')
     }
   };
 

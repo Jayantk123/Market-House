@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { ReactComponent as ArrowRightIcon } from "../assets/svg/keyboardArrowRightIcon.svg";
 import visibilityIcon from "../assets/svg/visibilityIcon.svg";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import {toast} from 'react-toastify'
 export default function Signin() {
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
@@ -39,7 +40,7 @@ export default function Signin() {
         userCredential._tokenResponse.refreshToken
       );
     } catch (error) {
-      console.error(error);
+    toast.error('Bad User Credentials')
     }
   };
 
