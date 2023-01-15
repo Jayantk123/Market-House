@@ -37,8 +37,9 @@ export default function Profile() {
           name,
         });
       }
+     
     } catch (error) {
-      console.log(error);
+      console.error(error);
       toast.error("Could not update profile details");
     }
   };
