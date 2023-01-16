@@ -4,6 +4,7 @@ import { ReactComponent as ArrowRightIcon } from "../assets/svg/keyboardArrowRig
 import visibilityIcon from "../assets/svg/visibilityIcon.svg";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import {toast} from 'react-toastify'
+import OAuth from "../Components/OAuth";
 export default function Signin() {
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
@@ -97,7 +98,7 @@ export default function Signin() {
           </div>
         </form>
 
-        {/* g oauth */}
+       <OAuth/>
         <Link to="/sign-up" className="registerLink">
           Sign Up Instead
         </Link>

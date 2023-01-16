@@ -11,6 +11,7 @@ import {
 } from "firebase/auth";
 import { doc, setDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "../firebase.config";
+import OAuth from "../Components/OAuth";
 export default function Signup() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -161,7 +162,7 @@ export default function Signup() {
           </div>
         </form>
 
-        {/* g oauth */}
+       <OAuth/>
         <Link to="/sign-in" className="registerLink">
           Sign In Instead
         </Link>
