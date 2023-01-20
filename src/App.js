@@ -11,6 +11,7 @@ import Navbar from "./Components/Navbar";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { PrivateRoute } from "./Components/PrivateRoute";
+import CreateListing from "./pages/CreateListing";
 export default function App() {
   return (
     <>
@@ -25,7 +26,10 @@ export default function App() {
           <Route path="/sign-in" element={<Signin />} />
           <Route path="/sign-up" element={<Signup />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/create-listing" element={<CreateListing />} />
+
         </Routes>
+
         <Navbar />
       </Router>
       <ToastContainer />
