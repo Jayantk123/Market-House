@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import Spinner from "../Components/Spinner";
+import { toast } from "react-toastify";
 
 export default function CreateListing() {
   const [geolocationEnabled, setGeolocationEnabled] = useState(true);
@@ -57,10 +58,61 @@ export default function CreateListing() {
     };
   }, [isMounted]);
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
 
-    
+    setLoading(true);
+
+    if (discountedPrice >= regularPrice) {
+      setLoading(false);
+      toast.error("Discounted price needs to be less than regular price");
+      return;
+    }
+
+    if (images.length > 6) {
+      setLoading(false);
+      toast.error("Max 6 images");
+      return;
+    }
+
+    let geolocation = {};
+    let location;
+
+    const options = {
+      method: "GET",
+      headers: {
+        "X-RapidAPI-Key": "b2db2a83ffmsh46e3299cbbf90f5p1847a6jsnef12c96bd2b4",
+        "X-RapidAPI-Host": "address-from-to-latitude-longitude.p.rapidapi.com",
+      },
+    };
+
+    if (geolocationEnabled) {
+      const response = await fetch(
+        `https://address-from-to-latitude-longitude.p.rapidapi.com/geolocationapi?address=${address}`,
+        options
+      );
+
+      const data = await response.json();
+      console.log(data);
+      geolocation.lat =
+        data.results === undefined ? 0 : data.Results[0].latitude;
+      geolocation.lng =
+        data.results === undefined ? 0 : data.Results[0].longitude;
+      location =
+        data.results === undefined ? undefined : data.Results[0].address;
+
+        if(location===undefined || location.includes('undefined')) {
+          setLoading(false)
+          toast.error('Please enter a correct address')
+          return
+        }
+    } else {
+      geolocation.lat = latitude;
+      geolocation.lng = longitude;
+      location = address
+    }
+
+    setLoading(false);
   };
 
   const onMutate = (e) => {
