@@ -57,7 +57,6 @@ export default function CreateListing() {
       isMounted.current = false;
     };
   }, [isMounted]);
-
   const onSubmit = async (e) => {
     e.preventDefault();
 
@@ -81,7 +80,7 @@ export default function CreateListing() {
     const options = {
       method: "GET",
       headers: {
-        "X-RapidAPI-Key": "b2db2a83ffmsh46e3299cbbf90f5p1847a6jsnef12c96bd2b4",
+        "X-RapidAPI-Key": `${process.env.REACT_APP_KEY}`,
         "X-RapidAPI-Host": "address-from-to-latitude-longitude.p.rapidapi.com",
       },
     };
@@ -95,21 +94,21 @@ export default function CreateListing() {
       const data = await response.json();
       console.log(data);
       geolocation.lat =
-        data.results === undefined ? 0 : data.Results[0].latitude;
+        data.Results === undefined ? 0 : data.Results[0].latitude;
       geolocation.lng =
-        data.results === undefined ? 0 : data.Results[0].longitude;
+        data.Results === undefined ? 0 : data.Results[0].longitude;
       location =
-        data.results === undefined ? undefined : data.Results[0].address;
+        data.Results === undefined ? undefined : data.Results[0].address;
 
-        if(location===undefined || location.includes('undefined')) {
-          setLoading(false)
-          toast.error('Please enter a correct address')
-          return
-        }
+      if (location === undefined || location.includes("undefined")) {
+        setLoading(false);
+        toast.error("Please enter a correct address");
+        return;
+      }
     } else {
       geolocation.lat = latitude;
       geolocation.lng = longitude;
-      location = address
+      location = address;
     }
 
     setLoading(false);
