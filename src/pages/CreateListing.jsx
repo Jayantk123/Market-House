@@ -7,6 +7,7 @@ import {
   getDownloadURL,
 } from "firebase/storage";
 import { db } from "../firebase.config";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import Spinner from "../Components/Spinner";
 import { toast } from "react-toastify";
@@ -156,7 +157,7 @@ export default function CreateListing() {
       });
     };
 
-    const imgUrls = await Promise.all(
+    const imageUrls = await Promise.all(
       [...images].map((image) => storeImage(image))
     ).catch(() => {
       setLoading(false);
@@ -164,8 +165,22 @@ export default function CreateListing() {
       return;
     });
 
-    console.log(imgUrls);
-    setLoading(false);
+    const formDataCopy = {
+      ...formData,
+      imageUrls,
+      geolocation,
+      timestamp: serverTimestamp(),
+    };
+
+    delete formDataCopy.images;
+    delete formDataCopy.address;
+    location && (formDataCopy.location = location);
+    !formDataCopy.offer && delete formDataCopy.discountedPrice;
+
+    const docRef = await addDoc(collection(db, "listings"), formDataCopy);
+    setLoading(false)
+    toast.success('Listing saved')
+    navigate(`/category/${formDataCopy.type}/${docRef.id}`)
   };
 
   const onMutate = (e) => {
@@ -222,7 +237,7 @@ export default function CreateListing() {
               type="button"
               className={type === "rent" ? "formButtonActive" : "formButton"}
               id="type"
-              value="sale"
+              value="rent"
               onClick={onMutate}
             >
               Rent
