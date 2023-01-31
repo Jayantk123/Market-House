@@ -109,6 +109,7 @@ export default function CreateListing() {
       location =
         data.Results === undefined ? undefined : data.Results[0].address;
 
+       
       if (location === undefined || location.includes("undefined")) {
         setLoading(false);
         toast.error("Please enter a correct address");
