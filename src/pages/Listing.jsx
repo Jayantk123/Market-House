@@ -36,6 +36,17 @@ export default function Listing() {
   return (
     <main>
       {/* slider */}
+      {/* <CCarousel>
+  <CCarouselItem>
+    <CImage className="d-block w-100" src={ReactImg} alt="slide 1" />
+  </CCarouselItem>
+  <CCarouselItem>
+    <CImage className="d-block w-100" src={VueImg} alt="slide 2" />
+  </CCarouselItem>
+  <CCarouselItem>
+    <CImage className="d-block w-100" src={AngularImg} alt="slide 3" />
+  </CCarouselItem>
+</CCarousel> */}
       <div
         className="shareIconDiv"
         onClick={() => {
