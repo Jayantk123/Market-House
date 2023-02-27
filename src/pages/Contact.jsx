@@ -52,17 +52,18 @@ export default function Contact() {
                 value={message}
                 onChange={onChange}
               >
-                <a
+               
+              </textarea>
+              <a
                   href={`mailto:${landloard.email}?Subject=${searchParams.get(
                     "listingName"
                   )}&body=${message}`}
                 >
-                  <button type="button" className="primaryButton">
+                  <button type="submit" className="primaryButton">
                     {" "}
                     Send Message
                   </button>
                 </a>
-              </textarea>
             </div>
           </form>
         </main>
