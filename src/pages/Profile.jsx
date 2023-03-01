@@ -10,6 +10,8 @@ import {
   where,
   orderBy,
   deleteDoc,
+  limit,
+  startAfter,
 } from "firebase/firestore";
 import { db } from "../firebase.config";
 import { toast } from "react-toastify";
@@ -26,6 +28,7 @@ export default function Profile() {
     email: auth.currentUser.email,
   });
   const [changeDetails, setChangeDetails] = useState(false);
+  const [lastFetchedListing, setLastFetchedListing] = useState(null);
 
   const { name, email } = formData;
 
@@ -38,14 +41,17 @@ export default function Profile() {
       const q = query(
         listingsRef,
         where("userRef", "==", auth.currentUser.uid),
-        orderBy("timestamp", "desc")
+        orderBy("timestamp", "desc"),
+        limit(10)
       );
 
-      const querySanp = await getDocs(q);
+      const querySnap = await getDocs(q);
+      const lastVisible = querySnap.docs[querySnap.docs.length - 1];
+      setLastFetchedListing(lastVisible);
 
       const listings = [];
 
-      querySanp.forEach((doc) => {
+      querySnap.forEach((doc) => {
         return listings.push({
           id: doc.id,
           data: doc.data(),
@@ -104,7 +110,34 @@ export default function Profile() {
       toast.success("Successfully deleted listing");
     }
   };
+  // pagination...load more
+  const onFetchMoreListings = async () => {
+    const listingsRef = collection(db, "listings");
 
+    const q = query(
+      listingsRef,
+      where("userRef", "==", auth.currentUser.uid),
+      orderBy("timestamp", "desc"),
+      startAfter(lastFetchedListing),
+      limit(10)
+    );
+
+    const querySnap = await getDocs(q);
+    const lastVisible = querySnap.docs[querySnap.docs.length - 1];
+    setLastFetchedListing(lastVisible);
+
+    const listings = [];
+
+    querySnap.forEach((doc) => {
+      return listings.push({
+        id: doc.id,
+        data: doc.data(),
+      });
+    });
+
+    setListings((prevState) => [...prevState, ...listings]);
+    setLoading(false);
+  };
   return (
     <>
       <div className="profile">
@@ -174,6 +207,13 @@ export default function Profile() {
             </>
           )}
         </main>
+        <br />
+        <br />
+        {lastFetchedListing && (
+          <p className="loadMore" onClick={onFetchMoreListings}>
+            Load More
+          </p>
+        )}
       </div>
     </>
   );

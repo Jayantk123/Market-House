@@ -41,8 +41,7 @@ export default function Offers() {
 
         const lastVisible = querySnap.docs[querySnap.docs.length - 1];
         setLastFetchedListing(lastVisible);
-        console.log(lastVisible);
-
+      
         let listings = [];
         querySnap.forEach((doc) => {
           return listings.push({
