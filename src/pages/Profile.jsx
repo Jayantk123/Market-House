@@ -110,6 +110,9 @@ export default function Profile() {
       toast.success("Successfully deleted listing");
     }
   };
+
+const onEdit = (listingId)=>navigate(`/edit-listing/${listingId}`)
+
   // pagination...load more
   const onFetchMoreListings = async () => {
     const listingsRef = collection(db, "listings");
@@ -201,6 +204,7 @@ export default function Profile() {
                     listing={listing.data}
                     id={listing.id}
                     onDelete={() => onDelete(listing.id)}
+                    onEdit={() => onEdit(listing.id)}
                   />
                 ))}
               </ul>
