@@ -2,16 +2,16 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
-import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import 'swiper/swiper-bundle.css'
+import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/swiper-bundle.css";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { getDoc, doc } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { db } from "../firebase.config";
 import Spinner from "../Components/Spinner";
 import shareIcon from "../assets/svg/shareIcon.svg";
-SwiperCore.use([Navigation, Pagination, Scrollbar, A11y])
+SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 export default function Listing() {
   const [listing, setListing] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -40,20 +40,19 @@ export default function Listing() {
   // console.log(listing.imageUrls[0]);
   return (
     <main>
-      <Swiper slidesPerView={1} pagination={{ clickable: true }}>
+      <Swiper slidesPerView={5} pagination={{ clickable: true }}>
         {listing.imageUrls.map((url, index) => (
           <SwiperSlide key={index}>
             <div
               style={{
                 background: `url(${listing.imageUrls[index]}) center no-repeat`,
-                backgroundSize: 'cover',
+                backgroundSize: "cover",
               }}
-              className='swiperSlideDiv'
+              className="swiperSlideDiv"
             ></div>
           </SwiperSlide>
         ))}
       </Swiper>
-    
 
       <div
         className="shareIconDiv"
@@ -66,10 +65,20 @@ export default function Listing() {
         }}
       >
         <img src={shareIcon} alt="" />
+       
       </div>
       {shareLinkCopied && <p className="linkCopied">Link Copied!</p>}
 
+    
       <div className="listingDetails">
+      <div className="exploreCategories">
+      <img
+          src={listing.imageUrls[0]}
+          alt={listing.name}
+          className="categoryListingImg"
+        />
+        
+        <div>
         <p className="listingName">
           {listing.name} - $
           {listing.offer
@@ -104,6 +113,43 @@ export default function Listing() {
           <li>{listing.parking && "Parking Spot"}</li>
           <li>{listing.furnished && "Furnished"}</li>
         </ul>
+        </div>
+        </div>
+     
+        {/* <p className="listingName">
+          {listing.name} - $
+          {listing.offer
+            ? listing.discountedPrice
+                .toString()
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+            : listing.regularPrice
+                .toString()
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+        </p>
+        <p className="listingLocation">{listing.location}</p>
+        <p className="listingType">
+          For {listing.type === "rent" ? "Rent" : "Sale"}
+        </p>
+        {listing.offer && (
+          <p className="discountPrice">
+            ${listing.regularPrice - listing.discountedPrice} discount
+          </p>
+        )}
+
+        <ul className="listingDetailsList">
+          <li>
+            {listing.bedrooms > 1
+              ? `${listing.bedrooms} Bedrooms`
+              : "1 Bedroom"}
+          </li>
+          <li>
+            {listing.bathrooms > 1
+              ? `${listing.bathrooms} Bathrooms`
+              : "1 Bathroom"}
+          </li>
+          <li>{listing.parking && "Parking Spot"}</li>
+          <li>{listing.furnished && "Furnished"}</li>
+        </ul> */}
 
         <p className="listingLocationTitle">Location</p>
 
@@ -134,7 +180,9 @@ export default function Listing() {
           >
             Contact Landlord
           </Link>
+          
         )}
+        
       </div>
     </main>
   );
