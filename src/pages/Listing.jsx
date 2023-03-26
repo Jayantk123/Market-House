@@ -71,14 +71,14 @@ export default function Listing() {
 
     
       <div className="listingDetails">
-      <div className="exploreCategories">
+      <div className="categoryListing">
       <img
           src={listing.imageUrls[0]}
           alt={listing.name}
           className="categoryListingImg"
         />
         
-        <div>
+        <div className="categoryListingDetails">
         <p className="listingName">
           {listing.name} - $
           {listing.offer
