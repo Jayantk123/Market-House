@@ -33,6 +33,7 @@ export default function Profile() {
   const { name, email } = formData;
 
   const navigate = useNavigate();
+ 
 
   useEffect(() => {
     const fetchUserListings = async () => {
@@ -190,7 +191,7 @@ const onEdit = (listingId)=>navigate(`/edit-listing/${listingId}`)
           </div>
           <Link to="/create-worker-listing" className="createListing">
             <img src={homeIcon} alt="home" />
-            <p>Sell or rent your home</p>
+            <p>Apply for work</p>
             <img src={arrowRight} alt="arrow right" />
           </Link>
 
@@ -208,16 +209,19 @@ const onEdit = (listingId)=>navigate(`/edit-listing/${listingId}`)
                   />
                 ))}
               </ul>
-            </>
+            </> 
           )}
+
+
+
         </main>
         <br />
         <br />
-        {lastFetchedListing && (
+       {lastFetchedListing && (
           <p className="loadMore" onClick={onFetchMoreListings}>
             Load More
           </p>
-        )}
+        )} 
       </div>
     </>
   );

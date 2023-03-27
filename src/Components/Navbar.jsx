@@ -50,7 +50,8 @@ export default function Navbar() {
                   : "navbarListItemName"
               }
             >
-              Offers
+              {/* Offers */}
+              Listings
             </p>
           </li>
 

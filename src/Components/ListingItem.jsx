@@ -21,6 +21,7 @@ export default function ListingItem({ listing, id , onEdit, onDelete }) {
         <div className="categoryListingDetails">
           <p className="categoryListingLocation">{listing.location}</p>
           <p className="categoryListingName">{listing.name}</p>
+          <p className="listingType">{listing.work}</p>
           <p className="categoryListingLocation">Ph No. : { listing.number}</p>
           <p className="categoryListingLocation">Experience : { listing.experience}</p>
           <p className="categoryListingLocation">Age : { listing.age}</p>

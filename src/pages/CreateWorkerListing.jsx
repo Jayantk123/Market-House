@@ -24,7 +24,7 @@ export default function CreateWorkerListing() {
     experience:1,
     age:1,
     rate:1,
-    work:"Mistri",
+    work:"",
     images: {},
     aimages:{
     },

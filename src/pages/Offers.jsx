@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { getAuth, updateProfile } from "firebase/auth";
 import { useParams } from "react-router-dom";
+import ReactSearchBox from "react-search-box";
 import {
   collection,
   getDocs,
@@ -20,6 +22,7 @@ export default function Offers() {
   const [lastFetchedListing, setLastFetchedListing] = useState(null);
 
   const params = useParams();
+  const auth = getAuth();
 
   useEffect(() => {
     const fetchListings = async () => {
@@ -29,12 +32,14 @@ export default function Offers() {
 
         // create query
 
-        const q = query(
-          listingsRef,
-          where("offer", "==", true),
-          orderBy("timestamp", "desc"),
-          limit(1)
-        );
+        
+      const q = query(
+        listingsRef,
+        where("userRef", "==", auth.currentUser.uid),
+        orderBy("timestamp", "desc"),
+        limit(10)
+      );
+
 
         // execute query
         const querySnap = await getDocs(q);
@@ -97,7 +102,15 @@ export default function Offers() {
   return (
     <div className="category">
       <header>
-        <p className="pageHeader">Offers</p>
+        <p className="pageHeader">Listings</p>
+         {/* <ReactSearchBox
+         
+        placeholder="Search your worker"
+        value="Doe"
+       
+        // data={listings}
+        // callback={(record) => console.log(record)}
+      /> */}
       </header>
       {loading ? (
         <Spinner />

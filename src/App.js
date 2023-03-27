@@ -33,7 +33,8 @@ export default function App() {
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/create-listing" element={<CreateListing />} />
           <Route path="/create-worker-listing" element={<CreateWorkerListing />} />
-          <Route path='/edit-listing/:listingId' element={<EditListing />} />          <Route
+          <Route path='/edit-listing/:listingId' element={<EditListing />} />         
+           <Route
             path="/category/:categoryName/:listingId"
             element={<Listing />}
           />
