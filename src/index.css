@@ -724,6 +724,7 @@ button {
 .formInput,
 .formInputAddress,
 .formInputName,
+.formInputNumber,
 .formInputSmall,
 .formInputFile,
 .formButtonActive {
@@ -818,4 +819,34 @@ button {
   margin-left: 1rem;
   font-size: 0.8rem;
   opacity: 0.75;
+}
+
+
+.card {
+  background-color: #fff;
+  color: #333;
+  border-radius: 15px;
+  padding: 10px 10px;
+  margin: 20px 0;
+  position: relative;
+}
+
+.card.reverse {
+  background-color: rgba(0, 0, 0, 0.4);
+  color: #fff;
+}
+
+.card h2 {
+  font-size: 22px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.exploredailysalaryImg {
+  min-height: 115px;
+  height: 25vw;
+  width: 100%;
+  border-radius: 1.5rem;
+  object-fit: cover;
+  margin: 0 auto;
 }

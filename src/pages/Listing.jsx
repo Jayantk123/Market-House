@@ -2,16 +2,21 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
-import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import 'swiper/swiper-bundle.css'
+import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/swiper-bundle.css";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { getDoc, doc } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { db } from "../firebase.config";
+
+// import Card from "../Components/Card";
 import Spinner from "../Components/Spinner";
 import shareIcon from "../assets/svg/shareIcon.svg";
-SwiperCore.use([Navigation, Pagination, Scrollbar, A11y])
+import Card from "./Card";
+
+// import Rating from "rc-ratings";
+SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 export default function Listing() {
   const [listing, setListing] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -38,22 +43,24 @@ export default function Listing() {
   if (loading) return <Spinner />;
 
   // console.log(listing.imageUrls[0]);
+  const ratingChanged = (newRating) => {
+    console.log(newRating);
+  };
   return (
     <main>
-      <Swiper slidesPerView={1} pagination={{ clickable: true }}>
+      <Swiper slidesPerView={5} pagination={{ clickable: true }}>
         {listing.imageUrls.map((url, index) => (
           <SwiperSlide key={index}>
             <div
               style={{
                 background: `url(${listing.imageUrls[index]}) center no-repeat`,
-                backgroundSize: 'cover',
+                backgroundSize: "cover",
               }}
-              className='swiperSlideDiv'
+              className="swiperSlideDiv"
             ></div>
           </SwiperSlide>
         ))}
       </Swiper>
-    
 
       <div
         className="shareIconDiv"
@@ -70,40 +77,82 @@ export default function Listing() {
       {shareLinkCopied && <p className="linkCopied">Link Copied!</p>}
 
       <div className="listingDetails">
-        <p className="listingName">
-          {listing.name} - $
-          {listing.offer
-            ? listing.discountedPrice
-                .toString()
-                .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-            : listing.regularPrice
-                .toString()
-                .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-        </p>
-        <p className="listingLocation">{listing.location}</p>
-        <p className="listingType">
-          For {listing.type === "rent" ? "Rent" : "Sale"}
-        </p>
-        {listing.offer && (
-          <p className="discountPrice">
-            ${listing.regularPrice - listing.discountedPrice} discount
-          </p>
-        )}
+        <div className="categoryListing">
+          <img
+            src={listing.imageUrls[0]}
+            alt={listing.name}
+            className="categoryListingImg"
+          />
 
-        <ul className="listingDetailsList">
-          <li>
-            {listing.bedrooms > 1
-              ? `${listing.bedrooms} Bedrooms`
-              : "1 Bedroom"}
-          </li>
-          <li>
-            {listing.bathrooms > 1
-              ? `${listing.bathrooms} Bathrooms`
-              : "1 Bathroom"}
-          </li>
-          <li>{listing.parking && "Parking Spot"}</li>
-          <li>{listing.furnished && "Furnished"}</li>
-        </ul>
+          <div className="categoryListingDetails">
+            <p className="listingName">
+              {listing.name} - ₹
+              {listing.rate.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+            </p>
+            <p className="listingLocation">{listing.location} </p>
+
+            <p className="listingType">
+              {listing.type === "daily" ? "Daily" : "Salary"} Worker
+            </p>
+            <p className="listingType">{listing.work}</p>
+            {listing.offer && (
+              <p className="discountPrice">
+                ${listing.regularPrice - listing.discountedPrice} discount
+              </p>
+            )}
+
+            <div className="categoryListingDetails">
+              <p className="categoryListingLocation">
+                Ph No. : {listing.number}
+              </p>
+              <p className="categoryListingLocation">
+                Experience : {listing.experience}
+              </p>
+              <p className="categoryListingLocation">Age : {listing.age}</p>
+              <p>⭐⭐⭐⭐⭐</p>
+            </div>
+            <ul className="listingDetailsList">
+              <li>{listing.parking && "Parking Spot"}</li>
+              <li>{listing.furnished && "Furnished"}</li>
+            </ul>
+          </div>
+        </div>
+
+        <h2 className="listingLocationTitle">Feedback</h2>
+        <Card>
+       
+          <p>
+            "Great job on completing the project ahead of schedule, your hard
+            work is much appreciated!"
+          </p>
+        </Card>
+        <Card>
+          <p>
+            ""Your presentation was well-organized and engaging, you did a great
+            job communicating the key points effectively."
+          </p>
+        </Card>
+
+        {/* <Card>
+          <div className="text-display">
+            <h4>Ankush~</h4>
+            <p>
+              "I appreciated that you were on time for the job" or "I noticed
+              that you forgot to clean up after finishing the work."
+            </p>
+          </div>
+        </Card>
+        <Card>
+          <div className="text-display">
+            <h4>Akshay~</h4>
+            <p>
+              "Great job on that project! Your attention to detail and ability
+              to work efficiently made a significant impact on the team's
+              success."
+            </p>
+          </div>
+        </Card>
+      */}
 
         <p className="listingLocationTitle">Location</p>
 

@@ -99,9 +99,9 @@ export default function Category() {
     <div className="category">
       <header>
         <p className="pageHeader">
-          {params.categoryName === "rent"
-            ? "Places for rent"
-            : "Places for sale"}
+          {params.categoryName === "daily"
+            ? "Places for daily Workers"
+            : "Places for Salary Workers"}
         </p>
       </header>
       {loading ? (

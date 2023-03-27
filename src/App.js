@@ -15,10 +15,12 @@ import CreateListing from "./pages/CreateListing";
 import Listing from "./pages/Listing";
 import Contact from "./pages/Contact";
 import EditListing from "./pages/EditListing";
+import CreateWorkerListing from "./pages/CreateWorkerListing";
 export default function App() {
   return (
     <>
       <Router>
+      <Navbar />
         <Routes>
           <Route path="/" element={<Explore />} />
           <Route path="/offers" element={<Offers />} />
@@ -30,6 +32,7 @@ export default function App() {
           <Route path="/sign-up" element={<Signup />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/create-listing" element={<CreateListing />} />
+          <Route path="/create-worker-listing" element={<CreateWorkerListing />} />
           <Route path='/edit-listing/:listingId' element={<EditListing />} />          <Route
             path="/category/:categoryName/:listingId"
             element={<Listing />}
@@ -37,7 +40,7 @@ export default function App() {
           <Route path="/contact/:landloardId/" element={<Contact />} />
         </Routes>
 
-        <Navbar />
+    
       </Router>
       <ToastContainer />
     </>
