@@ -195,7 +195,7 @@ const onEdit = (listingId)=>navigate(`/edit-listing/${listingId}`)
             <img src={arrowRight} alt="arrow right" />
           </Link>
 
-          {/* {!loading && listings?.length > 0 && (
+          {!loading && listings?.length > 0 && (
             <>
               <p className="listingText">Your Listings</p>
               <ul className="listingList">
@@ -210,7 +210,7 @@ const onEdit = (listingId)=>navigate(`/edit-listing/${listingId}`)
                 ))}
               </ul>
             </> 
-          )} */}
+          )}
 
 
 

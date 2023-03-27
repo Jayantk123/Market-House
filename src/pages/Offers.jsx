@@ -102,15 +102,17 @@ export default function Offers() {
   return (
     <div className="category">
       <header>
-        <p className="pageHeader">Listings</p>
-         <ReactSearchBox
+        <h2  className="listingTitle">Listings</h2>
+        <div className="setstyle" >
+         <ReactSearchBox 
          
-        placeholder="Search your worker"
+        placeholder="Search for worker here"
         value="Doe"
        
         // data={listings}
         // callback={(record) => console.log(record)}
       />
+      </div>
       </header>
       {loading ? (
         <Spinner />

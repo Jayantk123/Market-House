@@ -857,3 +857,10 @@ button {
   border-radius: 1.5rem;
   object-fit: cover;
 }
+.setstyle{
+  border-radius: 10px;
+}
+.listingTitle {
+  font-size: large;
+  font-style:inherit;
+}

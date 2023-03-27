@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import Select from "react-dropdown-select";
 import {
   getStorage,
   ref,
@@ -16,6 +17,8 @@ import { v4 as uuidv4 } from "uuid";
 export default function CreateWorkerListing() {
   const [geolocationEnabled, setGeolocationEnabled] = useState(true);
   const [loading, setLoading] = useState(false);
+  const[role,setRole]=useState('');
+
   const [formData, setFormData] = useState({
     type: "salary",
     name: "",
@@ -24,7 +27,9 @@ export default function CreateWorkerListing() {
     experience:1,
     age:1,
     rate:1,
+  
     work:"",
+    value:"",
     images: {},
     aimages:{
     },
@@ -41,6 +46,8 @@ export default function CreateWorkerListing() {
     age,
     rate,
     work,
+    value,
+  
     images,
     aimages,
     latitude,
@@ -51,6 +58,11 @@ export default function CreateWorkerListing() {
   const navigate = useNavigate();
   const isMounted = useRef(true);
 
+  const onChangeworktype = (e)=> {
+   setRole(e.target.value);
+   console.log(role);
+
+  }
   useEffect(() => {
     if (isMounted) {
       onAuthStateChanged(auth, (user) => {
@@ -184,6 +196,7 @@ export default function CreateWorkerListing() {
       imageUrls,
     aadharimageUrls,
       geolocation,
+      work:role,
       timestamp: serverTimestamp(),
     };
 
@@ -229,6 +242,7 @@ export default function CreateWorkerListing() {
   if (loading) {
     return <Spinner />;
   }
+
 
   return (
     <div className="profile">
@@ -343,7 +357,7 @@ export default function CreateWorkerListing() {
 
           <label className="formLabel">Type of Work</label>
           <div>
-            <select value={work} onChange={onMutate} className="formInputSmall">
+            <select value={role} onChange={onChangeworktype} className="formInputSmall">
               <option value="Plumber">Plumber</option>
 
               <option value="Carpenter">Carpenter</option>
@@ -353,6 +367,7 @@ export default function CreateWorkerListing() {
               <option value="Mechanic">Mechanic</option>
               <option value="Mistri">Mistri</option>
             </select>
+          
           </div>
 
          

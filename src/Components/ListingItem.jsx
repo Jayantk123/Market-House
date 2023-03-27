@@ -5,9 +5,11 @@ import { ReactComponent as EditIcon } from "../assets/svg/editIcon.svg";
 // import Card from "./Card";
 import bedIcon from "../assets/svg/bedIcon.svg";
 import bathtubIcon from "../assets/svg/bathtubIcon.svg";
+import Card from "../pages/Card";
 
 export default function ListingItem({ listing, id , onEdit, onDelete }) {
   return (
+    <Card>
     <li className="categoryListing">
       <Link
         to={`/category/${listing.type}/${id}`}
@@ -18,6 +20,7 @@ export default function ListingItem({ listing, id , onEdit, onDelete }) {
           alt={listing.name}
           className="categoryListingImg"
         />
+        
         <div className="categoryListingDetails">
           <p className="categoryListingLocation">{listing.location}</p>
           <p className="categoryListingName">{listing.name}</p>
@@ -63,5 +66,6 @@ export default function ListingItem({ listing, id , onEdit, onDelete }) {
         />
       )}
     </li>
+    </Card>
   );
 }
