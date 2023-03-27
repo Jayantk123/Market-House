@@ -217,11 +217,11 @@ const onEdit = (listingId)=>navigate(`/edit-listing/${listingId}`)
         </main>
         <br />
         <br />
-       {lastFetchedListing && (
+       {/* {lastFetchedListing && (
           <p className="loadMore" onClick={onFetchMoreListings}>
             Load More
           </p>
-        )} 
+        )}  */}
       </div>
     </>
   );
