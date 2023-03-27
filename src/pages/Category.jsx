@@ -100,8 +100,8 @@ export default function Category() {
       <header>
         <p className="pageHeader">
           {params.categoryName === "daily"
-            ? "Places for daily Workers"
-            : "Places for Salary Workers"}
+            ? "Daily Workers"
+            : "Salary Workers"}
         </p>
       </header>
       {loading ? (
