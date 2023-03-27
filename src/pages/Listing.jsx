@@ -2,9 +2,9 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
-import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from "swiper";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/swiper-bundle.css";
+import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import 'swiper/swiper-bundle.css'
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { getDoc, doc } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
@@ -48,7 +48,7 @@ export default function Listing() {
   };
   return (
     <main>
-      <Swiper slidesPerView={5} pagination={{ clickable: true }}>
+      <Swiper slidesPerView={1} pagination={{ clickable: true }}>
         {listing.imageUrls.map((url, index) => (
           <SwiperSlide key={index}>
             <div
@@ -73,9 +73,11 @@ export default function Listing() {
         }}
       >
         <img src={shareIcon} alt="" />
+       
       </div>
       {shareLinkCopied && <p className="linkCopied">Link Copied!</p>}
 
+    
       <div className="listingDetails">
         <div className="categoryListing">
           <img
@@ -183,7 +185,9 @@ export default function Listing() {
           >
             Contact Landlord
           </Link>
+          
         )}
+        
       </div>
     </main>
   );
