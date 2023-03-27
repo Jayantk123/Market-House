@@ -103,14 +103,14 @@ export default function Offers() {
     <div className="category">
       <header>
         <p className="pageHeader">Listings</p>
-         {/* <ReactSearchBox
+         <ReactSearchBox
          
         placeholder="Search your worker"
         value="Doe"
        
         // data={listings}
         // callback={(record) => console.log(record)}
-      /> */}
+      />
       </header>
       {loading ? (
         <Spinner />
