@@ -18,10 +18,10 @@ import Spinner from "../Components/Spinner";
 import ListingItem from "../Components/ListingItem";
 import { useGeolocated } from "react-geolocated";
 import homeIcon from "../assets/svg/homeIcon.svg";
-import plumberIcon from "../assets/png/plumber.png"
-import carpenterIcon from "../assets/png/carpenter.png"
-import painterIcon from "../assets/png/painter.png"
-import distanceIcon from "../assets/png/dis.png"
+import plumberIcon from "../assets/png/plumber.png";
+import carpenterIcon from "../assets/png/carpenter.png";
+import painterIcon from "../assets/png/painter.png";
+import distanceIcon from "../assets/png/dis.png";
 
 export default function Offers() {
   const [listings, setListings] = useState(null);
@@ -30,7 +30,7 @@ export default function Offers() {
   const [search, setSearch] = useState("");
   const [searchlisting, setSearchListing] = useState(null);
   const [authId, setAuthId] = useState("RYVrHoDFWmN3sDz2enxgVBuo1tx1");
-  const[distData,setDistData]=useState(null)
+  const [distData, setDistData] = useState(null);
   const params = useParams();
   const auth = getAuth();
 
@@ -167,7 +167,7 @@ export default function Offers() {
         Math.sin(dLon / 2);
     let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     let d = R * c;
-    return d
+    return d;
     // console.log("distance==?", d);
   };
 
@@ -185,33 +185,32 @@ export default function Offers() {
     } else if (!isGeolocationEnabled) {
       toast.error("Geolocation is not enabled");
     } else if (coords) {
-
-
       // {listings && listings.map((listing) => (
       // const distance= calculateDistance(coords.latitude,coords.longitude,listing.data.geolocation.lat,listing.data.geolocation.lng)
-     
+
       // ))}
 
-
-
-      const newArray = listings.map((item,index)=>{
+      const newArray = listings.map((item, index) => {
         // console.log(item.data.geolocation.lat+"==="+coords.latitude);
-        const distance= calculateDistance(coords.latitude,coords.longitude,item.data.geolocation.lat,item.data.geolocation.lng)
-    //  console.log(distance);
+        const distance = calculateDistance(
+          coords.latitude,
+          coords.longitude,
+          item.data.geolocation.lat,
+          item.data.geolocation.lng
+        );
+        //  console.log(distance);
         return {
           ...item,
-          dis:distance,
-        }
-      })
+          dis: distance,
+        };
+      });
       setDistData(newArray);
       setSearchListing(null);
 
-      const lowdistance = newArray.filter(
-        (data) => data.dis <100
-      );
-      lowdistance.map((content)=>{
+      const lowdistance = newArray.filter((data) => data.dis < 100);
+      lowdistance.map((content) => {
         console.log(content);
-      })
+      });
       // console.log(lowdistance+"low dis");
 
       // setSearchListing(newArray)
@@ -220,14 +219,12 @@ export default function Offers() {
       // console.log(coords.longitude + " " + coords.latitude);
     }
   };
- 
+
   const shortCutSearch = (constsearch) => {
     if (constsearch === "distance") {
       findNearWorkers();
 
- 
       console.log("distance");
-    
     } else {
       console.log(constsearch);
       searchFilter(constsearch);
@@ -279,8 +276,13 @@ export default function Offers() {
           </Card>
           <Card>
             <li className="categoryListing">
-            <img src={plumberIcon} alt="home" onClick={() => shortCutSearch("plumber")}/>
-         
+              <img
+                src={plumberIcon}
+                alt="home"
+                className="your-element"
+                onClick={() => shortCutSearch("plumber")}
+              />
+
               {/* <p
                 className="listingType"
                 onClick={() => shortCutSearch("plumber")}
@@ -288,8 +290,13 @@ export default function Offers() {
                 Plumber
               </p> */}
 
-<img src={carpenterIcon} alt="home"   onClick={() => shortCutSearch("carpenter")}/>
-         
+              <img
+                src={carpenterIcon}
+                alt="home"
+                className="your-element"
+                onClick={() => shortCutSearch("carpenter")}
+              />
+
               {/* <p
                 className="listingType"
                 onClick={() => shortCutSearch("carpenter")}
@@ -297,9 +304,13 @@ export default function Offers() {
                 Carpenter
               </p> */}
 
-<img src={painterIcon} alt="home"    onClick={() => shortCutSearch("painter")}/>
-   
-              
+              <img
+                src={painterIcon}
+                alt="home"
+                className="your-element"
+                onClick={() => shortCutSearch("painter")}
+              />
+
               {/* <p
                 className="listingType"
                 onClick={() => shortCutSearch("painter")}
@@ -307,7 +318,12 @@ export default function Offers() {
                 Painter
               </p> */}
 
-<img src={distanceIcon} alt="home"   onClick={() => shortCutSearch("distance")}/>
+              <img
+                src={distanceIcon}
+                alt="home"
+                className="your-element"
+                onClick={() => shortCutSearch("distance")}
+              />
 
               {/* <p
                 className="listingType"
@@ -336,8 +352,9 @@ export default function Offers() {
                   />
                 ))}
               </ul>
-            ): distData && distData.length ?(<>
-            {distData.map((listing) => (
+            ) : distData && distData.length ? (
+              <>
+                {distData.map((listing) => (
                   // console.log(listing)
 
                   <ListingItem
@@ -347,7 +364,8 @@ export default function Offers() {
                     key={listing.id}
                   />
                 ))}
-            </>):  (
+              </>
+            ) : (
               <ul className="categoryListings">
                 {listings.map((listing) => (
                   // console.log(listing)

@@ -970,3 +970,6 @@ padding: 0.5rem 1rem;
   }
 }
 
+.your-element {
+  cursor: pointer;
+}

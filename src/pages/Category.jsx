@@ -13,13 +13,48 @@ import { db } from "../firebase.config";
 import { toast } from "react-toastify";
 import Spinner from "../Components/Spinner";
 import ListingItem from "../Components/ListingItem";
+import Card from "./Card";
 
 export default function Category() {
   const [listings, setListings] = useState(null);
   const [loading, setLoading] = useState(true);
   const [lastFetchedListing, setLastFetchedListing] = useState(null);
+  const [search, setSearch] = useState("");
+  const [searchlisting, setSearchListing] = useState(null);
+  
 
   const params = useParams();
+
+  const onChange = (e) => {
+    setSearch(e.target.value);
+  };
+  const abc = async (e) => {
+    e.preventDefault();
+    searchFilter(search);
+  };
+  const searchFilter = (search) => {
+    console.log(listings);
+    if (search === "") {
+      toast.error("Please enter something");
+    } else {
+      const data = listings.filter(
+        (listing) => listing.data.work.toLowerCase() === search.toLowerCase()
+      );
+      // console.log(data);
+      if (data.length === 0) {
+        toast.error("No result found");
+      }
+      console.log(data);
+      setSearchListing(data);
+      setSearch("");
+      console.log(searchlisting);
+      // setSearchListing(listings.filter((blog)=>
+      //   blog.work.toLowerCase().includes(search.toLowerCase())
+      // ))
+
+      // console.log(searchlisting);
+    }
+  };
 
   useEffect(() => {
     const fetchListings = async () => {
@@ -105,24 +140,60 @@ export default function Category() {
             : "Salary Workers"}
         </p>
       </header>
+      <Card>
+            <div className="">
+              <form onSubmit={abc}>
+                <input
+                  className="formInputName"
+                  onChange={onChange}
+                  placeholder="Search for worker here"
+                  value={search}
+                />
+                <button type="submit" className="listingType ">
+                  Search
+                </button>
+              </form>
+
+              {/* clear funcion */}
+              {/* <div>
+           
+              {searchlisting.length>0 &&( <button onClick={handleClear} className="listingType ">Clear</button>)}
+            </div> */}
+            </div>
+          </Card>
       {loading ? (
         <Spinner />
       ) : listings && listings.length > 0 ? (
         <>
           <main>
-            <ul className="categoryListings">
-              {listings.map((listing) => (
-                // console.log(listing)
+            {searchlisting && searchlisting.length>0 ?(
+             <ul className="categoryListings">
+             {searchlisting.map((listing) => (
+               // console.log(listing)
 
-                <ListingItem
-                  listing={listing.data}
-                  id={listing.id}
-                  key={listing.id}
-                />
-                
-              ))}
-              <hr />
-            </ul>
+               <ListingItem
+                 listing={listing.data}
+                 id={listing.id}
+                 key={listing.id}
+               />
+               
+             ))}
+             <hr />
+           </ul>  
+            ): <ul className="categoryListings">
+            {listings.map((listing) => (
+              // console.log(listing)
+
+              <ListingItem
+                listing={listing.data}
+                id={listing.id}
+                key={listing.id}
+              />
+              
+            ))}
+            <hr />
+          </ul>}
+           
           </main>
 
           <br />
