@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Suspense} from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Explore from "./pages/Explore";
 import Offers from "./pages/Offers";
@@ -16,6 +16,8 @@ import Listing from "./pages/Listing";
 import Contact from "./pages/Contact";
 import EditListing from "./pages/EditListing";
 import CreateWorkerListing from "./pages/CreateWorkerListing";
+import CreateWorkerListingHindi from "./pages/CreateWorkerListingHindi";
+import Location from "./pages/Location";
 export default function App() {
   return (
     <>
@@ -31,7 +33,8 @@ export default function App() {
           <Route path="/sign-in" element={<Signin />} />
           <Route path="/sign-up" element={<Signup />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
-          <Route path="/create-listing" element={<CreateListing />} />
+          {/* <Route path="/create-listing" element={<CreateListing />} /> */}
+          <Route path="/create-worker-listing-hindi" element={<CreateWorkerListingHindi />} />
           <Route path="/create-worker-listing" element={<CreateWorkerListing />} />
           <Route path='/edit-listing/:listingId' element={<EditListing />} />         
            <Route
@@ -39,11 +42,14 @@ export default function App() {
             element={<Listing />}
           />
           <Route path="/contact/:landloardId/" element={<Contact />} />
+          <Route path="/location" element={<Location />} />
+          
         </Routes>
 
     
       </Router>
       <ToastContainer />
+      <Suspense/>
     </>
   );
 }

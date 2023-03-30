@@ -15,7 +15,7 @@ import { toast } from "react-toastify";
 import { v4 as uuidv4 } from "uuid";
 
 
-export default function CreateWorkerListing() {
+export default function CreateWorkerListingHindi() {
   const [geolocationEnabled, setGeolocationEnabled] = useState(true);
   const [loading, setLoading] = useState(false);
   const [role, setRole] = useState("");
@@ -244,16 +244,16 @@ export default function CreateWorkerListing() {
   return (
     <div className="profile">
       <header>
-      <div className="categoryListing">
-        <p className="pageHeader">Create a Listing</p>
-        <Link to="/create-worker-listing-hindi">
-        <button className="languageChangeButton">Change Language</button>
+        <div className="categoryListing">
+        <p className="pageHeader">एक सूची बनाएँ</p>
+        <Link to="/create-worker-listing">
+        <button className="languageChangeButton">भाषा बदलें</button>
         </Link>
         </div>
       </header>
       <main>
         <form onSubmit={onSubmit}>
-          <label className="formLabel">Daily/Salary Wage</label>
+          <label className="formLabel">दैनिक/वेतन मजदूरी</label>
           <div className="formButtons">
             <button
               type="button"
@@ -262,7 +262,7 @@ export default function CreateWorkerListing() {
               value="daily"
               onClick={onMutate}
             >
-              Daily
+             दैनिक
             </button>
 
             <button
@@ -272,11 +272,11 @@ export default function CreateWorkerListing() {
               value="salary"
               onClick={onMutate}
             >
-              Salary
+              वेतन
             </button>
           </div>
 
-          <label className="formLabel">Name</label>
+          <label className="formLabel">नाम</label>
           <input
             className="formInputName"
             type="text"
@@ -288,7 +288,7 @@ export default function CreateWorkerListing() {
             required
           />
 
-          <label className="formLabel">Contact No.</label>
+          <label className="formLabel">संपर्क नंबर</label>
           <input
             className="formInputNumber"
             type="number"
@@ -300,7 +300,7 @@ export default function CreateWorkerListing() {
             required
           />
 
-          <label className="formLabel">Address</label>
+          <label className="formLabel">पता</label>
           <textarea
             className="formInputAddress"
             type="text"
@@ -310,7 +310,7 @@ export default function CreateWorkerListing() {
             required
           />
 
-          <label className="formLabel">Experience</label>
+          <label className="formLabel">अनुभव</label>
           <div className="formPriceDiv">
             <input
               className="formInputSmall"
@@ -324,7 +324,7 @@ export default function CreateWorkerListing() {
             />
           </div>
 
-          <label className="formLabel">Age</label>
+          <label className="formLabel">आयु</label>
           <div className="formPriceDiv">
             <input
               className="formInputSmall"
@@ -336,9 +336,9 @@ export default function CreateWorkerListing() {
               max="750000000"
               required
             />
-            <p className="formPriceText">Min 20 Year</p>
+            <p className="formPriceText">न्यूनतम 20 वर्ष</p>
           </div>
-          <label className="formLabel">Rate</label>
+          <label className="formLabel">दर</label>
           <div className="formPriceDiv">
             <input
               className="formInputSmall"
@@ -350,31 +350,35 @@ export default function CreateWorkerListing() {
               max="750000000"
               required
             />
-            <p className="formPriceText">₹ / Month</p>
+             <p className="formPriceText">डिफ़ॉल्ट वेतन 700 है</p>
+            <p className="formPriceText">₹ / महीना</p>
           </div>
 
-          <label className="formLabel">Type of Work</label>
+          <label className="formLabel">
+काम के प्रकार</label>
           <div>
             <select
               value={role}
               onChange={onChangeworktype}
               className="formInputSmall"
             >
-              <option value="Plumber">Plumber</option>
+               <option value=""></option>
+              <option value="Plumber">प्लंबर</option>
 
-              <option value="Carpenter">Carpenter</option>
+              <option value="Carpenter">बढ़ई</option>
 
-              <option value="Painter">Painter</option>
-              <option value="Electrician">Electrician</option>
-              <option value="Mechanic">Mechanic</option>
-              <option value="Mistri">Mistri</option>
+              <option value="Painter">चित्रकार</option>
+              <option value="Electrician">बिजली मिस्त्री
+</option>
+              <option value="Mechanic">मैकेनिक</option>
+              <option value="Mistri">मिस्त्री</option>
             </select>
           </div>
 
           {/* profile image */}
-          <label className="formLabel">Upload Profile Image</label>
+          <label className="formLabel">प्रोफ़ाइल छवि अपलोड करें</label>
           <p className="imagesInfo">
-            The first image will be the cover (max 1).
+          पहली छवि कवर होगी (अधिकतम 1).
           </p>
           <input
             className="formInputFile"
@@ -387,9 +391,9 @@ export default function CreateWorkerListing() {
             required
           />
 
-          <label className="formLabel">Upload Aadhar Images</label>
+          <label className="formLabel">आधार अपलोड करें</label>
           <p className="imagesInfo">
-            The first image will be the cover (max 2).
+          पहली छवि कवर (अधिकतम 2) होगी।
           </p>
           <input
             className="formInputFile"
@@ -402,7 +406,7 @@ export default function CreateWorkerListing() {
             required
           />
           <button type="submit" className="primaryButton createListingButton">
-            Create Listing
+          लिस्टिंग बनाएँ
           </button>
         </form>
       </main>

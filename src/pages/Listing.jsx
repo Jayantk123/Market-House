@@ -9,6 +9,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { getDoc, doc } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { db } from "../firebase.config";
+import { useLocation } from "react-router-dom"
 
 // import Card from "../Components/Card";
 import Spinner from "../Components/Spinner";
@@ -23,6 +24,7 @@ export default function Listing() {
   const [shareLinkCopied, setSetShareLinkCopied] = useState(false);
 
   const navigate = useNavigate();
+  const location = useLocation()
   const params = useParams();
   const auth = getAuth();
 
@@ -46,6 +48,11 @@ export default function Listing() {
   const ratingChanged = (newRating) => {
     console.log(newRating);
   };
+
+  
+  const currentDistance = location.state?.distance
+  // const {form}=Listing.state
+  console.log(currentDistance);
   return (
     <main>
       <Swiper slidesPerView={1} pagination={{ clickable: true }}>
@@ -97,6 +104,7 @@ export default function Listing() {
               {listing.type === "daily" ? "Daily" : "Salary"} Worker
             </p>
             <p className="listingType">{listing.work}</p>
+           
             {listing.offer && (
               <p className="discountPrice">
                 ${listing.regularPrice - listing.discountedPrice} discount
@@ -111,7 +119,11 @@ export default function Listing() {
                 Experience : {listing.experience}
               </p>
               <p className="categoryListingLocation">Age : {listing.age}</p>
-              <p>⭐⭐⭐⭐⭐</p>
+               {currentDistance && (
+              <p className="">{currentDistance.toFixed(0)} Km</p>
+            )}
+              <p className="listingStar">⭐⭐⭐⭐⭐</p>
+              
             </div>
             <ul className="listingDetailsList">
               <li>{listing.parking && "Parking Spot"}</li>

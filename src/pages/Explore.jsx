@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import daily from "../assets/jpg/daily.jpg";
 import salary from "../assets/jpg/salary.jpg";
 import a from "../assets/jpg/1.jpg";
+import carosalImage1 from "../assets/jpg/carosal1.jpg";
+import carosalImage2 from "../assets/jpg/carosal2.jpg";
+import carosalImage3 from "../assets/jpg/carosal3.jpg";
 import b from "../assets/jpg/2.jpg";
 import c from "../assets/jpg/3.jpg";
 import sellCategoryImage from "../assets/jpg/sellCategoryImage.jpg";
@@ -27,24 +30,28 @@ export default function Explore() {
 
       <Carousel>
         <div>
-          <img src={a} />
+          <img src={carosalImage1} />
           {/* <p className="legend">Legend 1</p> */}
         </div>
         <div>
-          <img src={b} />
+          <img src={carosalImage2} />
           {/* <p className="legend">Legend 2</p> */}
         </div>
         <div>
-          <img src={c} />
+          <img src={carosalImage3} />
           {/* <p className="legend">Legend 3</p> */}
         </div>
       </Carousel>
 
       <div className="explore">
         <header>
-          <p className="pageHeader">"Ab Kaam Dhundo Ghar Pe"</p>
+          <p className=" slogan pageHeader">"Ab Kaam Dhundo Ghar Se"</p>
         </header>
         <main>
+        {/* <Link to="/location" state={"aff"}>
+              
+              <p className="exploreCategoryName">Daily Wage Workers</p>
+            </Link> */}
           <div className="categoryListing">
             <label className="formLabel">Select Location</label>
             <div>

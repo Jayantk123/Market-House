@@ -60,6 +60,7 @@ export default function Category() {
     fetchListings();
   }, []);
 
+ 
   // pagination...load more
   const onFetchMoreListings = async () => {
     try {

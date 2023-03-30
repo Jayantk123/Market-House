@@ -7,13 +7,16 @@ import bedIcon from "../assets/svg/bedIcon.svg";
 import bathtubIcon from "../assets/svg/bathtubIcon.svg";
 import Card from "../pages/Card";
 
-export default function ListingItem({ listing, id , onEdit, onDelete }) {
+export default function ListingItem({ listing, id ,dis, onEdit, onDelete }) {
+  console.log(dis+" "+id);
+ 
   return (
     <Card>
     <li className="categoryListing">
       <Link
         to={`/category/${listing.type}/${id}`}
         className="categoryListingLink"
+        state={{distance:dis}}
       >
         <img
           src={listing.imageUrls[0]}
@@ -25,6 +28,10 @@ export default function ListingItem({ listing, id , onEdit, onDelete }) {
           <p className="categoryListingLocation">{listing.location}</p>
           <p className="categoryListingName">{listing.name}</p>
           <p className="listingType">{listing.work}</p>
+          {dis && (
+   <p className="listingType">{dis.toFixed(0)} km</p>
+          )}
+       
           <p className="categoryListingLocation">Ph No. : { listing.number}</p>
           <p className="categoryListingLocation">Experience : { listing.experience}</p>
           <p className="categoryListingLocation">Age : { listing.age}</p>

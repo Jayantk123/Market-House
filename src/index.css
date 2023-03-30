@@ -851,12 +851,35 @@ button {
   object-fit: cover;
   margin: 0 auto;
 }
-.kaamlogo {
+/* .kaamlogo {
   width: 100%;
   height: 100px;
   border-radius: 1.5rem;
   object-fit: cover;
+} */
+
+
+.kaamlogo {
+  width: 100%;
+  height: auto;
 }
+
+@media screen and (min-width: 768px) {
+  /* adjust size for tablets */
+  .kaamlogo {
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  /* adjust size for desktops */
+  .kaamlogo {
+    width: 30%;
+  }
+}
+
+
+
 .setstyle{
   border-radius: 10px;
 }
@@ -864,3 +887,86 @@ button {
   font-size: large;
   font-style:inherit;
 }
+
+.languageChangeButton{
+padding: 0.5rem 1rem;
+  background-color: #ffffff;
+  font-weight: 600;
+  border-radius: 1rem;
+  font-size: 1rem;
+  margin: 0.5rem 0.5rem 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.listingStar {
+  /* padding: 0.25rem 0.5rem; */
+  /* background-color: #00cc66; */
+  /* color: #ffffff; */
+  /* border-radius: 2rem; */
+  /* display: inline; */
+  /* font-weight: 600; */
+  /* font-size: 0.8rem; */
+  /* margin-right: 1rem; */
+}
+
+
+/* Set max-width for the Carousel container */
+.Carousel {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+/* Make the Carousel responsive on smaller devices */
+@media (max-width: 767px) {
+  .Carousel .slider-wrapper {
+    padding: 0 10px;
+  }
+  
+  .Carousel .slide {
+    min-height: 200px;
+  }
+  
+  .Carousel .legend {
+    font-size: 12px;
+  }
+}
+
+/* Make the Carousel responsive on larger devices */
+@media (min-width: 768px) {
+  .Carousel .slider-wrapper {
+    padding: 0 50px;
+  }
+  
+  .Carousel .slide {
+    min-height: 300px;
+  }
+  
+  .Carousel .legend {
+    font-size: 16px;
+  }
+}
+
+.slogan {
+  text-align: center;
+  animation: typewriter 2s steps(20) forwards;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 1px solid #000;
+  background: linear-gradient(to right, #00f, #f00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  /* font-family: 'Open Sans', sans-serif; */
+  font-family: 'Playfair Display', serif;
+ 
+}
+
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
