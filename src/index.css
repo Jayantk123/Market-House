@@ -41,6 +41,18 @@ button {
   padding: 0 3rem;
   font-size: 1rem;
 }
+.emailInput{
+  box-shadow: rgba(0, 0, 0, 0.11);
+  border: none;
+  background: #ffffff;
+  border-radius: 1rem;
+  height: 3rem;
+  width: 100%;
+  outline: none;
+  font-family: 'Montserrat', sans-serif;
+  padding: 0 3rem;
+  font-size: 1rem;
+}
 @media (min-width: 1100px) {
   .input,
   .passwordInput,
@@ -71,7 +83,14 @@ button {
   align-items: center;
   justify-content: center;
 }
-
+.loginImage{
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: block;
+  margin: auto;
+}
 .removeIcon {
   cursor: pointer;
   position: absolute;
@@ -191,7 +210,7 @@ button {
 }
 
 .emailInput {
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   background: url('./assets/svg/personIcon.svg') #ffffff 2.5% center no-repeat;
 }
 
@@ -213,15 +232,17 @@ button {
 }
 
 .forgotPasswordLink {
+  margin-top: 0rem;
   cursor: pointer;
   color: #00cc66;
   font-weight: 600;
+  font-size: 12px;
   text-align: right;
 }
 
 .signInBar,
 .signUpBar {
-  margin-top: 3rem;
+  margin-top:-2.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -265,7 +286,7 @@ button {
 }
 
 .socialLogin {
-  margin-top: 4rem;
+  margin-top: 0rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -292,6 +313,14 @@ button {
 .registerLink {
   margin-top: 4rem;
   color: #00cc66;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.or {
+  margin-top: 1rem;
+  color: #000000;
   font-weight: 600;
   text-align: center;
   margin-bottom: 3rem;
@@ -408,6 +437,25 @@ button {
   margin-bottom: 1rem;
   position: relative;
 }
+.googlelisting {
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: center;
+  margin-left: 7rem;
+  position: relative;
+  margin-top: -2rem;
+}
+.txt-center{
+  text-align: center;
+}
+
+.cardlisting {
+  /* display: flex; */
+  /* justify-content: space-between; */
+  /* align-items: center; */
+  margin-bottom: 1rem;
+  /* position: relative; */
+}
 
 .categoryListingLink {
   display: contents;
@@ -439,13 +487,15 @@ button {
   font-weight: 600;
   font-size: 0.7rem;
   opacity: 0.8;
-  margin-bottom: 0;
+  margin-bottom: 0.5rem;
 }
 
 .categoryListingName {
+  /* width: auto; */
   font-weight: 600;
   font-size: 1.25rem;
-  margin: 0;
+  /* margin: 0; */
+  margin-bottom: 0.5rem;
 }
 
 .categoryListingPrice {
@@ -457,7 +507,16 @@ button {
   display: flex;
   align-items: center;
 }
-
+.ListingPrice {
+  margin-top: 0.5rem;
+  margin-left: 3rem;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #00cc66;
+  margin-bottom: 0;
+  display: flex;
+  align-items: center;
+}
 .categoryListingInfoDiv {
   display: flex;
   justify-content: space-between;
@@ -524,10 +583,27 @@ button {
 }
 
 .listingType {
+ 
   padding: 0.25rem 0.5rem;
   background-color: #00cc66;
   color: #ffffff;
-  border-radius: 2rem;
+  border-radius: 0.4rem;
+  display: inline;
+  font-weight: 600;
+  font-size: 0.8rem;
+  margin-right: 1rem;
+}
+.signingoogle {
+  color: #000000;
+}
+.starRating {
+  /* margin-left: 1rem; */
+  padding: 0.25rem 0.5rem;
+  /* background-color: #00cc66; */
+  color: #000;
+  border-radius: 0.5rem;
+  
+  border: 0.1rem solid #00cc66;
   display: inline;
   font-weight: 600;
   font-size: 0.8rem;
@@ -738,6 +814,20 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.seachinput{
+ 
+  background-color: #ffffff;
+  font-weight: 50;
+  border-radius: 1rem;
+  border: none;
+  outline: none;
+  font-family: 'Montserrat', sans-serif;
+  /* font-size: 1rem; */
+  /* margin: 0.5rem 0.5rem 0 0; */
+  /* display: flex; */
+  /* justify-content: center; */
+  /* align-items: center; */
 }
 .formButtonActive {
   background-color: #00cc66;
@@ -972,4 +1062,11 @@ padding: 0.5rem 1rem;
 
 .your-element {
   cursor: pointer;
+}
+.searchbarcomp{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  position: relative;
 }

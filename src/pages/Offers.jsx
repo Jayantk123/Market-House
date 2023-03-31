@@ -242,7 +242,7 @@ export default function Offers() {
   return (
     <div className="category">
       <header>
-        <h2 className="listingTitle">Listings</h2>
+        {/* <h2 className="listingTitle">Listings</h2> */}
         <div className="setstyle">
           {/* 
           <form onSubmit={handleSubmit}>
@@ -257,13 +257,14 @@ export default function Offers() {
             <div className="">
               <form onSubmit={abc}>
                 <input
-                  className="formInputName"
+                  className="seachinput"
                   onChange={onChange}
                   placeholder="Search for worker here"
                   value={search}
                 />
-                <button type="submit" className="listingType ">
+                <button type="submit" className="listingType " style={{ marginLeft: '103px' }}>
                   Search
+                 
                 </button>
               </form>
 
@@ -274,6 +275,9 @@ export default function Offers() {
             </div> */}
             </div>
           </Card>
+
+
+
           <Card>
             <li className="categoryListing">
               <img

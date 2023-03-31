@@ -19,6 +19,7 @@ export default function CreateWorkerListing() {
   const [geolocationEnabled, setGeolocationEnabled] = useState(true);
   const [loading, setLoading] = useState(false);
   const [role, setRole] = useState("");
+  const [result, setResult] = useState('');
 
   const [formData, setFormData] = useState({
     type: "salary",
@@ -241,6 +242,18 @@ export default function CreateWorkerListing() {
     return <Spinner />;
   }
 
+
+  const handleClick = async (event) => {
+    event.preventDefault();
+    console.log("jdhfhkskdf");
+    event.preventDefault();
+   
+    const response = await fetch(`/predict`);
+    const data = await response.json();
+    console.log(response+" "+data);
+    setResult(data.result);
+  };
+
   return (
     <div className="profile">
       <header>
@@ -351,6 +364,7 @@ export default function CreateWorkerListing() {
               required
             />
             <p className="formPriceText">₹ / Month</p>
+            <button onClick={handleClick}>Calculate</button>
           </div>
 
           <label className="formLabel">Type of Work</label>

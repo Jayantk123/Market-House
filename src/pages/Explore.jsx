@@ -14,6 +14,12 @@ import shareVideo from "../assets/jpg/rentCategoryImage.jpg";
 import background from "../assets/jpg/rentCategoryImage.jpg";
 import logo from "../assets/jpg/rentCategoryImage.jpg";
 import kaamdhanda from "../assets/jpg/Logo.png";
+import plumberIcon from "../assets/png/plumber.png";
+import carpenterIcon from "../assets/png/carpenter.png";
+import painterIcon from "../assets/png/painter.png";
+import distanceIcon from "../assets/png/dis.png";
+import mistriIcon from "../assets/png/mistri.png";
+import constIcon from "../assets/png/const.png";
 
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
@@ -48,11 +54,11 @@ export default function Explore() {
           <p className=" slogan pageHeader">"Ab Kaam Dhundo Ghar Se"</p>
         </header>
         <main>
-        {/* <Link to="/location" state={"aff"}>
+          {/* <Link to="/location" state={"aff"}>
               
               <p className="exploreCategoryName">Daily Wage Workers</p>
             </Link> */}
-          <div className="categoryListing">
+          {/* <div className="categoryListing">
             <label className="formLabel">Select Location</label>
             <div>
               <select className="formInputSmall">
@@ -65,9 +71,92 @@ export default function Explore() {
                 <option value="Others">Others</option>
               </select>
             </div>
-          </div>
+          </div> */}
 
           {/* slider */}
+
+          <li className="categoryListing">
+            <div>
+              <Card>
+                <div>
+                  <img
+                    src={plumberIcon}
+                    alt="home"
+                    className="your-element"
+                    // onClick={() => shortCutSearch("plumber")}
+                  />
+                </div>
+              </Card>
+              <p className="txt-center">plumber</p>
+            </div>
+
+            {/* <p
+                className="listingType"
+                onClick={() => shortCutSearch("plumber")}
+              >
+                Plumber
+              </p> */}
+
+            <div>
+              <Card>
+                <div>
+                  <img
+                    src={carpenterIcon}
+                    alt="home"
+                    className="your-element"
+                    // onClick={() => shortCutSearch("carpenter")}
+                  />
+
+                  {/* <p
+                className="listingType"
+                onClick={() => shortCutSearch("carpenter")}
+              >
+                Carpenter
+              </p> */}
+                </div>
+              </Card>
+              <p className="txt-center">Carpenter</p>
+            </div>
+
+            <div>
+              <Card>
+                <img
+                  src={painterIcon}
+                  alt="home"
+                  className="your-element"
+                  // onClick={() => shortCutSearch("painter")}
+                />
+              </Card>
+              <p className="txt-center">Painter</p>
+            </div>
+            {/* <p
+                className="listingType"
+                onClick={() => shortCutSearch("painter")}
+              >
+                Painter
+              </p> */}
+
+<div>
+            <Card>
+              <img
+                src={constIcon}
+                alt="home"
+                className="your-element"
+                // onClick={() => shortCutSearch("distance")}
+              />
+            
+
+              {/* <p
+                className="listingType"
+                onClick={() => shortCutSearch("distance")}
+              >
+                Distance
+              </p> */}
+            </Card>
+            <p className="txt-center">Mason</p>
+            </div>
+          </li>
+
           <p className="exploreCategoryHeading">Categories</p>
           <div className="exploreCategories">
             <Link to="/category/daily">
@@ -83,12 +172,10 @@ export default function Explore() {
               <p className="exploreCategoryName">Salary Wage Workers</p>
             </Link>
           </div>
-         <br />
-         <br />
-         <br />
-         <br />
-        
-         
+          <br />
+          <br />
+          <br />
+          <br />
         </main>
       </div>
     </>
