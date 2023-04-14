@@ -47,7 +47,7 @@ export default function Offers() {
           listingsRef,
           where("userRef", "==", authId),
           orderBy("timestamp", "desc"),
-          limit(10)
+         
         );
 
         // execute query
@@ -116,6 +116,7 @@ export default function Offers() {
     if (search === "") {
       toast.error("Please enter something");
     } else {
+      // console.log(listings);
       const data = listings.filter(
         (listing) => listing.data.work.toLowerCase() === search.toLowerCase()
       );

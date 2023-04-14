@@ -112,6 +112,9 @@ export default function Signin() {
          
           </div> */}
        <OAuth/>
+       <br />
+
+       <br /><br /><br /><br />
         {/* <Link to="/sign-up" className="registerLink">
           Sign Up with Google
         </Link> */}

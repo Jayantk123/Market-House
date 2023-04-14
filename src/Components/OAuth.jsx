@@ -50,7 +50,7 @@ export default function OAuth() {
       </div> */}
     
       <div className="googlelisting">
-      <p className="signingoogle"> Sign in with Google</p>
+      {/* <p className="signingoogle"> Signin with Google</p> */}
         {/* <p>Sign {location.pathname === "/sign-up" ? "up" : "in"}with</p> */}
         <button className="socialIconDiv" onClick={onGoggleClick}>
           <img className="socialIconImg" src={googleIcon} alt="goggle" />

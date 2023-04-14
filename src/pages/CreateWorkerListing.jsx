@@ -13,13 +13,13 @@ import { Link, useNavigate } from "react-router-dom";
 import Spinner from "../Components/Spinner";
 import { toast } from "react-toastify";
 import { v4 as uuidv4 } from "uuid";
-
+import data from "./data";
 
 export default function CreateWorkerListing() {
   const [geolocationEnabled, setGeolocationEnabled] = useState(true);
   const [loading, setLoading] = useState(false);
   const [role, setRole] = useState("");
-  const [result, setResult] = useState('');
+  const [result, setResult] = useState("");
 
   const [formData, setFormData] = useState({
     type: "salary",
@@ -28,7 +28,7 @@ export default function CreateWorkerListing() {
     address: "",
     experience: 1,
     age: 1,
-    rate: 1,
+    rate: "",
 
     work: "",
     value: "",
@@ -74,11 +74,15 @@ export default function CreateWorkerListing() {
       });
     }
     console.log(aimages);
+
     return () => {
       isMounted.current = false;
     };
   }, [isMounted]);
 
+
+
+  
   const onSubmit = async (e) => {
     e.preventDefault();
 
@@ -242,26 +246,54 @@ export default function CreateWorkerListing() {
     return <Spinner />;
   }
 
+  // const handleClick = async (event) => {
+  //   event.preventDefault();
+  //   console.log("jdhfhkskdf");
+  //   event.preventDefault();
 
-  const handleClick = async (event) => {
-    event.preventDefault();
-    console.log("jdhfhkskdf");
-    event.preventDefault();
+  //   const response = await fetch(`/predict`);
+  //   const data = await response.json();
+  //   console.log(response+" "+data);
+  //   setResult(data.result);
+  // };
+
+  const handleCalculate = () => {
    
-    const response = await fetch(`/predict`);
-    const data = await response.json();
-    console.log(response+" "+data);
-    setResult(data.result);
+    let min_wage;
+
+    if (experience < 2) {
+      // 500-800
+      min_wage = Math.floor(Math.random() * 4 + 5) * 100;
+    } else if (experience >= 2 && experience < 4) {
+      // 800-1000
+      min_wage = Math.floor(Math.random() * 3 + 8) * 100;
+    } else {
+      // 1000-1200
+      min_wage = Math.floor(Math.random() * 2 + 10) * 100;
+    }
+    
+
+    const filteredData = data.filter(
+      (item) => item.state === address && item.experience <= Number(experience)
+    );
+    if (filteredData.length > 0) {
+      setResult(filteredData[0].minimumSalary);
+      formData.rate = result;
+      console.log(result);
+      console.log(formData.rate);
+    } else {
+      setResult("Data not found");
+    }
   };
 
   return (
     <div className="profile">
       <header>
-      <div className="categoryListing">
-        <p className="pageHeader">Create a Listing</p>
-        <Link to="/create-worker-listing-hindi">
-        <button className="languageChangeButton">Change Language</button>
-        </Link>
+        <div className="categoryListing">
+          <p className="pageHeader">Create a Listing</p>
+          <Link to="/create-worker-listing-hindi">
+            <button className="languageChangeButton">Change Language</button>
+          </Link>
         </div>
       </header>
       <main>
@@ -364,8 +396,10 @@ export default function CreateWorkerListing() {
               required
             />
             <p className="formPriceText">₹ / Month</p>
-            <button onClick={handleClick}>Calculate</button>
+            <button onClick={handleCalculate}>Calculate</button>
           </div>
+          <p>Your min wage is : {result}</p>
+          {/* <input type="text" id="result" value={result} readOnly /> */}
 
           <label className="formLabel">Type of Work</label>
           <div>
