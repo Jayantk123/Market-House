@@ -475,7 +475,7 @@ export default function CreateWorkerListing() {
     }
   };
 
-  if (loading || wageloading) {
+  if (wageloading) {
     return <Loader />;
   }
   if (loading ) {
