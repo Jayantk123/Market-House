@@ -592,6 +592,8 @@ button {
   font-weight: 600;
   font-size: 0.8rem;
   margin-right: 1rem;
+  margin-top: 0.5rem;
+ 
 }
 .signingoogle {
   color: #000000;
@@ -804,6 +806,7 @@ button {
 .formInputNumber,
 .formInputSmall,
 .formInputFile,
+.formButtonActiveRemove,
 .formButtonActive {
   padding: 0.9rem 3rem;
   background-color: #ffffff;
@@ -815,6 +818,9 @@ button {
   justify-content: center;
   align-items: center;
 }
+
+
+
 .seachinput{
  
   background-color: #ffffff;
@@ -833,6 +839,13 @@ button {
   background-color: #00cc66;
   color: #ffffff;
 }
+
+.formButtonActiveRemove {
+  background-color: #e90c0c;
+  color: #ffffff;
+}
+
+
 
 .flex {
   display: flex;
@@ -1048,7 +1061,8 @@ padding: 0.5rem 1rem;
   -webkit-text-fill-color: transparent;
   /* font-family: 'Open Sans', sans-serif; */
   font-family: 'Playfair Display', serif;
- 
+  /* animation-delay: 10s; */
+  animation-iteration-count: infinite; /* Make the animation repeat infinitely */
 }
 
 @keyframes typewriter {
@@ -1069,4 +1083,60 @@ padding: 0.5rem 1rem;
   align-items: center;
   margin-bottom: 1rem;
   position: relative;
+}
+
+
+.loading-container {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: transparent !important;
+  backdrop-filter: blur(5px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.loading-gif {
+  width: 120px;
+  height: 120px;
+}
+
+.loading-text {
+  font-size: 24px;
+  color: rgb(19, 17, 17);
+  margin-top: 16px;
+  text-align: center;
+}
+
+
+.card-container {
+  width: 100%; /* Set the desired width of the card container */
+  /* height: 200px; Set the desired height of the card container */
+  overflow-x: auto; /* Enable horizontal scrolling */
+  white-space: nowrap; /* Prevent line breaks for the images */
+}
+
+.scrollable-container {
+  display: flex; /* Use flexbox to arrange the images horizontally */
+}
+
+
+
+.categoryListing {
+  display: flex; /* Use flexbox to arrange the images horizontally */
+  list-style-type: none; /* Remove bullet points from list items */
+  padding: 0; /* Remove default padding from list */
+}
+
+.categoryListing li {
+  margin-right: 10px; /* Add margin between list items as needed */
+}
+
+.your-element {
+  /* Add styles for your images as needed */
 }

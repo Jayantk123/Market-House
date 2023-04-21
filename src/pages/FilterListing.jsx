@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getAuth, updateProfile } from "firebase/auth";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import ReactSearchBox from "react-search-box";
 import Card from "./Card";
 import {
@@ -22,12 +22,9 @@ import plumberIcon from "../assets/png/plumber.png";
 import carpenterIcon from "../assets/png/carpenter.png";
 import painterIcon from "../assets/png/painter.png";
 import distanceIcon from "../assets/png/dis.png";
-import starFilterIcon from "../assets/png/starfilter.png";
-import incSalaryIcon from "../assets/png/incsalary.png";
-import decSalaryIcon from "../assets/png/decsalary.png";
+import Loader from "../Components/Loader";
 
-
-export default function Offers() {
+export default function FilterListing() {
   const [listings, setListings] = useState(null);
   const [loading, setLoading] = useState(true);
   const [lastFetchedListing, setLastFetchedListing] = useState(null);
@@ -37,7 +34,8 @@ export default function Offers() {
   const [distData, setDistData] = useState(null);
   const params = useParams();
   const auth = getAuth();
-
+  const location = useLocation();
+  const currentDistance = location.state?.distance;
   useEffect(() => {
     const fetchListings = async () => {
       setAuthId(auth.uid ? auth.uid : "");
@@ -50,6 +48,7 @@ export default function Offers() {
         const q = query(
           listingsRef,
           where("userRef", "==", authId),
+          //   where("work", "==", currentDistance),
           orderBy("timestamp", "desc")
         );
 
@@ -66,8 +65,37 @@ export default function Offers() {
             data: doc.data(),
           });
         });
-        setListings(listings);
+
+        const data = listings.filter(
+          (listing) =>
+            listing.data.work.toLowerCase() === currentDistance.toLowerCase()
+        );
+        // console.log(data);
+        if (data.length === 0) {
+          toast.error("No result found");
+        }
+
+        setListings(data);
         setLoading(false);
+
+        //
+
+        // if (search === "") {
+        //     toast.error("Please enter something");
+        //   } else {
+        //     // console.log(listings);
+        //     const data = listings.filter(
+        //       (listing) => listing.data.work.toLowerCase() === search.toLowerCase()
+        //     );
+        //     // console.log(data);
+        //     if (data.length === 0) {
+        //       toast.error("No result found");
+        //     }
+        //     setSearchListing(data);
+        //     setSearch("");
+        //     console.log(searchlisting);
+
+        //
       } catch (error) {
         toast.error("Could not fetch listings");
       }
@@ -114,45 +142,6 @@ export default function Offers() {
   const onChange = (e) => {
     setSearch(e.target.value);
   };
-
-
- 
-
-  const ratingFilter = () =>{
- 
-    // setListings(prevData => [...prevData].sort((a, b) => a.rate - b.rate));
-    console.log(listings);
-  
-    const sortedData = [...listings].sort((a, b) => b.data.rating - a.data.rating);
-    setSearchListing(sortedData);
-   console.log(sortedData);
-  }
-  
-
-const salaryFilterAscending = () =>{
- 
-  // setListings(prevData => [...prevData].sort((a, b) => a.rate - b.rate));
-  console.log(listings);
-
-  const sortedData = [...listings].sort((a, b) => a.data.rate - b.data.rate);
-  setSearchListing(sortedData);
- console.log(sortedData);
-}
-
-const salaryFilterDescending = () =>{
- 
-  // setListings(prevData => [...prevData].sort((a, b) => a.rate - b.rate));
-  console.log(listings);
-
-  const sortedData = [...listings].sort((a, b) => b.data.rate - a.data.rate);
-  setSearchListing(sortedData);
- console.log(sortedData);
-
-
-
-
-}
-
 
   const searchFilter = (search) => {
     if (search === "") {
@@ -282,9 +271,14 @@ const salaryFilterDescending = () =>{
     // console.log(data);
   };
 
+  if (loading) {
+    return <Spinner />;
+  }
   return (
     <div className="category">
       <header>
+        <Card>Listings</Card>
+
         {/* <h2 className="listingTitle">Listings</h2> */}
         <div className="setstyle">
           {/* 
@@ -296,119 +290,6 @@ const salaryFilterDescending = () =>{
             />
             <button type="submit">Search</button>
           </form> */}
-          <Card>
-            <div className="">
-              <form onSubmit={abc} className="categoryListing">
-                <input
-                  className="seachinput"
-                  onChange={onChange}
-                  placeholder="Search for worker here"
-                  value={search}
-                />
-                <button type="submit" className="listingType  ">
-                  Search
-                </button>
-              </form>
-
-              {/* clear funcion */}
-              {/* <div>
-           
-              {searchlisting.length>0 &&( <button onClick={handleClear} className="listingType ">Clear</button>)}
-            </div> */}
-            </div>
-          </Card>
-
-         
-
-
-
-
-
-
-
-
-
-          <Card>
-      <div className="card-container">
-        <ul className="categoryListing">
-          <li>
-            <img
-              src={plumberIcon}
-              alt="home"
-              className="your-element"
-              onClick={() => shortCutSearch('plumber')}
-            />
-            
-          </li>
-         
-          <li>
-            <img
-              src={carpenterIcon}
-              alt="home"
-              className="your-element"
-              onClick={() => shortCutSearch('carpenter')}
-            />
-          </li>
-          <li>
-            <img
-              src={painterIcon}
-              alt="home"
-              className="your-element"
-              onClick={() => shortCutSearch('painter')}
-            />
-          </li>
-          <li>
-            <img
-              src={distanceIcon}
-              alt="home"
-              className="your-element"
-              onClick={() => shortCutSearch('distance')}
-            />
-          </li>
-          <li>
-            <img
-              src={incSalaryIcon}
-              // ascending
-              alt="home"
-              className="your-element"
-              onClick={() => salaryFilterAscending()}
-            />
-          </li>
-
-
-          <li>
-            <img
-              src={decSalaryIcon}
-              // descending
-              alt="home"
-              className="your-element"
-              onClick={() => salaryFilterDescending()}
-            />
-          </li>
-
-          <li>
-            <img
-              src={starFilterIcon}
-              // rating filter
-              alt="home"
-              className="your-element"
-              onClick={() => ratingFilter()}
-            />
-          </li>
-         
-        </ul>
-      </div>
-    </Card>
-
-
-
-
-
-
-
-
-
-
         </div>
       </header>
       {loading ? (

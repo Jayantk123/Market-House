@@ -140,16 +140,21 @@ export default function Category() {
             : "Salary Workers"}
         </p>
       </header>
-      <Card>
+     
+
+
+
+
+  <Card>
             <div className="">
-              <form onSubmit={abc}>
+              <form onSubmit={abc} className="categoryListing">
                 <input
-                  className="formInputName"
+                  className="seachinput"
                   onChange={onChange}
                   placeholder="Search for worker here"
                   value={search}
                 />
-                <button type="submit" className="listingType ">
+                <button type="submit" className="listingType  ">
                   Search
                 </button>
               </form>
@@ -161,6 +166,7 @@ export default function Category() {
             </div> */}
             </div>
           </Card>
+
       {loading ? (
         <Spinner />
       ) : listings && listings.length > 0 ? (

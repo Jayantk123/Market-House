@@ -7,19 +7,71 @@ import {
   uploadBytesResumable,
   getDownloadURL,
 } from "firebase/storage";
+
+import {
+  collection,
+  getDocs,
+  query,
+  where,
+  orderBy,
+  addDoc,
+  serverTimestamp,
+  limit,
+  startAfter,
+} from "firebase/firestore";
 import { db } from "../firebase.config";
-import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+
 import { Link, useNavigate } from "react-router-dom";
 import Spinner from "../Components/Spinner";
 import { toast } from "react-toastify";
 import { v4 as uuidv4 } from "uuid";
-
+import data from "./data";
+import SpeechRecognition, {
+  useSpeechRecognition,
+} from "react-speech-recognition";
+import en from "../assets/language/english.json";
+import hi from "../assets/language/hindi.json";
+import ta from "../assets/language/tamil.json";
+import ur from "../assets/language/urdu.json";
 
 export default function CreateWorkerListingHindi() {
+  const {
+    transcript,
+    listening,
+    resetTranscript,
+    browserSupportsSpeechRecognition,
+  } = useSpeechRecognition();
+
   const [geolocationEnabled, setGeolocationEnabled] = useState(true);
   const [loading, setLoading] = useState(false);
   const [role, setRole] = useState("");
+  const [result, setResult] = useState("");
 
+  const [authId, setAuthId] = useState("RYVrHoDFWmN3sDz2enxgVBuo1tx1");
+  const [wage, setWage] = useState(null);
+  const [lastFetchedListing, setLastFetchedListing] = useState(null);
+  const [language, setLanguage] = useState("en");
+  const labels = {
+    en,
+    hi,
+    ta,
+    ur,
+  };
+  const handleChangeLanguage = (event) => {
+    setLanguage(event.target.value);
+  };
+
+  const renderLabel = (field) => {
+    return labels[language][field];
+  };
+
+  const [minwage, setMinWage] = useState({
+    experience: 1,
+    gender: "",
+    city: "",
+    wage: 500,
+  });
+  let city;
   const [formData, setFormData] = useState({
     type: "salary",
     name: "",
@@ -27,7 +79,7 @@ export default function CreateWorkerListingHindi() {
     address: "",
     experience: 1,
     age: 1,
-    rate: 1,
+    rate: "",
 
     work: "",
     value: "",
@@ -73,10 +125,119 @@ export default function CreateWorkerListingHindi() {
       });
     }
     console.log(aimages);
+
     return () => {
       isMounted.current = false;
     };
   }, [isMounted]);
+
+  const fetchListings = async () => {
+    setAuthId(auth.uid ? auth.uid : "");
+    try {
+      // get reference
+      const wageRef = collection(db, "minwage");
+
+      // create query
+
+      const q = query(wageRef, where("city", "==", "Gujrat"));
+
+      // execute query
+      const querySnap = await getDocs(q);
+
+      const lastVisible = querySnap.docs[querySnap.docs.length - 1];
+      setLastFetchedListing(lastVisible);
+
+      let listings = [];
+      querySnap.forEach((doc) => {
+        return listings.push({
+          id: doc.id,
+          data: doc.data(),
+        });
+      });
+      console.log(listings[0].data.wage);
+      setWage(listings[0].data.wage);
+      setWage(listings);
+      setLoading(false);
+    } catch (error) {
+      toast.error("Could not fetch listings");
+      console.log(error);
+    }
+  };
+
+  const getLocation = async (e) => {
+    // setLoading(true)
+    let geolocation = {};
+    let location;
+
+    const options = {
+      method: "GET",
+      headers: {
+        "X-RapidAPI-Key": `${process.env.REACT_APP_KEY}`,
+        "X-RapidAPI-Host": "address-from-to-latitude-longitude.p.rapidapi.com",
+      },
+    };
+
+    if (geolocationEnabled) {
+      const response = await fetch(
+        `https://address-from-to-latitude-longitude.p.rapidapi.com/geolocationapi?address=${address}`,
+        options
+      );
+
+      const data = await response.json();
+      console.log(data);
+      geolocation.lat =
+        data.Results === undefined ? 0 : data.Results[0].latitude;
+      geolocation.lng =
+        data.Results === undefined ? 0 : data.Results[0].longitude;
+      location =
+        data.Results === undefined ? undefined : data.Results[0].address;
+      for (let i = 0; i < data.Results.length; i++) {
+        if (data.Results !== undefined && data.Results[i].city !== undefined) {
+          city = data.Results[i].city;
+          break;
+        }
+      }
+      //  city = data.Results === undefined ? "" : data.Results[0].city;
+
+      console.log(city);
+      if (location === undefined || location.includes("undefined")) {
+        setLoading(false);
+        toast.error("Please enter a correct address");
+        return;
+      }
+    } else {
+      geolocation.lat = latitude;
+      geolocation.lng = longitude;
+      location = address;
+    }
+
+    let min_wage;
+
+    if (experience < 2) {
+      // 500-800
+      min_wage = Math.floor(Math.random() * 4 + 5) * 100;
+    } else if (experience >= 2 && experience < 4) {
+      // 800-1000
+      min_wage = Math.floor(Math.random() * 3 + 8) * 100;
+    } else {
+      // 1000-1200
+      min_wage = Math.floor(Math.random() * 2 + 10) * 100;
+    }
+
+    const newWageDate = {
+      city,
+      experience,
+      gender: "",
+      wage: min_wage,
+    };
+    //  const docRef = await addDoc(collection(db, "minwage"), newWageDate);
+    //  console.log(docRef);
+
+    //  setLoading(false);
+    //  toast.success("Listing saved");
+
+    fetchListings();
+  };
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -137,6 +298,7 @@ export default function CreateWorkerListingHindi() {
       location = address;
     }
 
+    // setMinWage()
     //store images in firebase
 
     const storeImage = async (image) => {
@@ -241,19 +403,110 @@ export default function CreateWorkerListingHindi() {
     return <Spinner />;
   }
 
+  // const handleClick = async (event) => {
+  //   event.preventDefault();
+  //   console.log("jdhfhkskdf");
+  //   event.preventDefault();
+
+  //   const response = await fetch(`/predict`);
+  //   const data = await response.json();
+  //   console.log(response+" "+data);
+  //   setResult(data.result);
+  // };
+
+  const handleCalculate = () => {
+    let min_wage;
+
+    if (experience < 2) {
+      // 500-800
+      min_wage = Math.floor(Math.random() * 4 + 5) * 100;
+    } else if (experience >= 2 && experience < 4) {
+      // 800-1000
+      min_wage = Math.floor(Math.random() * 3 + 8) * 100;
+    } else {
+      // 1000-1200
+      min_wage = Math.floor(Math.random() * 2 + 10) * 100;
+    }
+
+    getLocation(address);
+    const newWageDate = {
+      city,
+      experience,
+      gender: "",
+      wage: min_wage,
+    };
+
+    console.log(newWageDate);
+
+    const filteredData = data.filter(
+      (item) => item.state === address && item.experience <= Number(experience)
+    );
+    if (filteredData.length > 0) {
+      setResult(filteredData[0].minimumSalary);
+      formData.rate = result;
+      console.log(result);
+      console.log(formData.rate);
+    } else {
+      setResult("Data not found");
+    }
+  };
+  if (!browserSupportsSpeechRecognition) {
+    return <span>Browser doesn't support speech recognition.</span>;
+  }
+  const handleStop = () => {
+    SpeechRecognition.stopListening();
+    if (transcript.includes("my name is")) {
+      const name = transcript.replace("my name is", "").trim();
+      console.log(name);
+      //  setName(name)
+    }
+
+    if (transcript.includes("my email is")) {
+      const email = transcript.replace("my email is", "").trim();
+      console.log(email);
+      // setEmail(email)
+    }
+
+    // setName(transcript)
+    console.log(transcript);
+  };
   return (
     <div className="profile">
+      <div></div>
+      <div>
+        <p>Microphone: {listening ? "on" : "off"}</p>
+        <button onClick={SpeechRecognition.startListening}>Start</button>
+        <button onClick={handleStop} id="name">
+          Stop
+        </button>
+        <button onClick={resetTranscript}>Reset</button>
+        <p>{transcript}</p>
+      </div>
       <header>
         <div className="categoryListing">
-        <p className="pageHeader">एक सूची बनाएँ</p>
-        <Link to="/create-worker-listing">
-        <button className="languageChangeButton">भाषा बदलें</button>
-        </Link>
+          <p className="pageHeader">{renderLabel("create a listing")}</p>
+          {/* <Link to="/create-worker-listing-hindi">
+            <button className="languageChangeButton">Change Language</button>
+          </Link> */}
+
+          {/* <h2>Select language:</h2> */}
+          <select
+            className="languageChangeButton"
+            value={language}
+            onChange={handleChangeLanguage}
+          >
+            <option value="en">English</option>
+            <option value="hi">Hindi</option>
+            <option value="ta">Tamil</option>
+            <option value="ur">Urdu</option>
+          </select>
         </div>
       </header>
       <main>
         <form onSubmit={onSubmit}>
-          <label className="formLabel">दैनिक/वेतन मजदूरी</label>
+          <label className="formLabel">
+            {renderLabel("daily/salary wage")}
+          </label>
           <div className="formButtons">
             <button
               type="button"
@@ -262,7 +515,7 @@ export default function CreateWorkerListingHindi() {
               value="daily"
               onClick={onMutate}
             >
-             दैनिक
+              {renderLabel("daily")}
             </button>
 
             <button
@@ -272,11 +525,11 @@ export default function CreateWorkerListingHindi() {
               value="salary"
               onClick={onMutate}
             >
-              वेतन
+              {renderLabel("salary")}
             </button>
           </div>
 
-          <label className="formLabel">नाम</label>
+          <label className="formLabel">{renderLabel("name")}</label>
           <input
             className="formInputName"
             type="text"
@@ -288,7 +541,7 @@ export default function CreateWorkerListingHindi() {
             required
           />
 
-          <label className="formLabel">संपर्क नंबर</label>
+          <label className="formLabel">{renderLabel("contact")}</label>
           <input
             className="formInputNumber"
             type="number"
@@ -300,7 +553,7 @@ export default function CreateWorkerListingHindi() {
             required
           />
 
-          <label className="formLabel">पता</label>
+          <label className="formLabel">{renderLabel("address")}</label>
           <textarea
             className="formInputAddress"
             type="text"
@@ -310,7 +563,7 @@ export default function CreateWorkerListingHindi() {
             required
           />
 
-          <label className="formLabel">अनुभव</label>
+          <label className="formLabel">{renderLabel("experience")}</label>
           <div className="formPriceDiv">
             <input
               className="formInputSmall"
@@ -324,7 +577,7 @@ export default function CreateWorkerListingHindi() {
             />
           </div>
 
-          <label className="formLabel">आयु</label>
+          <label className="formLabel">{renderLabel("age")}</label>
           <div className="formPriceDiv">
             <input
               className="formInputSmall"
@@ -336,9 +589,9 @@ export default function CreateWorkerListingHindi() {
               max="750000000"
               required
             />
-            <p className="formPriceText">न्यूनतम 20 वर्ष</p>
+            <p className="formPriceText">{renderLabel("min 20 year")}</p>
           </div>
-          <label className="formLabel">दर</label>
+          <label className="formLabel">{renderLabel("rate")}</label>
           <div className="formPriceDiv">
             <input
               className="formInputSmall"
@@ -350,36 +603,39 @@ export default function CreateWorkerListingHindi() {
               max="750000000"
               required
             />
-             <p className="formPriceText">डिफ़ॉल्ट वेतन 700 है</p>
-            <p className="formPriceText">₹ / महीना</p>
+            <p className="formPriceText">{renderLabel("per month")}</p>
+            <button onClick={handleCalculate}>
+              {renderLabel("calculate")}
+            </button>
           </div>
+          <p>
+            {renderLabel("min wage calculated")} {result}
+          </p>
+          {/* <input type="text" id="result" value={result} readOnly /> */}
 
-          <label className="formLabel">
-काम के प्रकार</label>
+          <label className="formLabel">{renderLabel("type of work")}</label>
           <div>
             <select
               value={role}
               onChange={onChangeworktype}
               className="formInputSmall"
             >
-               <option value=""></option>
-              <option value="Plumber">प्लंबर</option>
+              <option value="Plumber">{renderLabel("plumber")}</option>
 
-              <option value="Carpenter">बढ़ई</option>
+              <option value="Carpenter">{renderLabel("carpenter")}</option>
 
-              <option value="Painter">चित्रकार</option>
-              <option value="Electrician">बिजली मिस्त्री
-</option>
-              <option value="Mechanic">मैकेनिक</option>
-              <option value="Mistri">मिस्त्री</option>
+              <option value="Painter">{renderLabel("painter")}</option>
+              <option value="Electrician">{renderLabel("electrician")}</option>
+              <option value="Mechanic">{renderLabel("mechanic")}</option>
+              <option value="Mistri">{renderLabel("mistri")}</option>
             </select>
           </div>
 
           {/* profile image */}
-          <label className="formLabel">प्रोफ़ाइल छवि अपलोड करें</label>
-          <p className="imagesInfo">
-          पहली छवि कवर होगी (अधिकतम 1).
-          </p>
+          <label className="formLabel">
+            {renderLabel("upload profile image")}
+          </label>
+          <p className="imagesInfo">{renderLabel("image label")}</p>
           <input
             className="formInputFile"
             type="file"
@@ -391,10 +647,8 @@ export default function CreateWorkerListingHindi() {
             required
           />
 
-          <label className="formLabel">आधार अपलोड करें</label>
-          <p className="imagesInfo">
-          पहली छवि कवर (अधिकतम 2) होगी।
-          </p>
+          <label className="formLabel">{renderLabel("upload aadhar")}</label>
+          <p className="imagesInfo">{renderLabel("aadhar label")}</p>
           <input
             className="formInputFile"
             type="file"
@@ -406,7 +660,7 @@ export default function CreateWorkerListingHindi() {
             required
           />
           <button type="submit" className="primaryButton createListingButton">
-          लिस्टिंग बनाएँ
+            {renderLabel("create listing button")}
           </button>
         </form>
       </main>

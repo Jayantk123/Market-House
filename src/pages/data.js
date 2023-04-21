@@ -10,3 +10,13 @@ const data = [
   
   export default data;
   
+
+  // const removeSpecialMarks = (str) => {
+  //   return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  // };
+  
+  // const str1 = "Ghāziābād";
+  // const str2 = "Ghaziabad";
+  
+  // console.log(removeSpecialMarks(str1) === str2); // true
+  

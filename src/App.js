@@ -18,6 +18,10 @@ import EditListing from "./pages/EditListing";
 import CreateWorkerListing from "./pages/CreateWorkerListing";
 import CreateWorkerListingHindi from "./pages/CreateWorkerListingHindi";
 import Location from "./pages/Location";
+import SpeechInput from "./pages/SpeechInput";
+import FilterListing from "./pages/FilterListing";
+
+
 export default function App() {
   return (
     <>
@@ -25,6 +29,8 @@ export default function App() {
       <Navbar />
         <Routes>
           <Route path="/" element={<Explore />} />
+          <Route path="/speech" element={<SpeechInput />} />
+          <Route path="/filter-listings" element={<FilterListing />} />
           <Route path="/offers" element={<Offers />} />
           <Route path="/category/:categoryName" element={<Category />} />
           <Route path="/profile" element={<PrivateRoute />}>

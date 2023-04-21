@@ -23,8 +23,16 @@ import constIcon from "../assets/png/const.png";
 
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
+import Offers from "./Offers";
+import FilterListing from "./FilterListing";
+import { useState } from "react";
 
 export default function Explore() {
+  const [showPlumber, setShowPlumber] = useState(false); // State to track whether to show the PlumberComponent
+  const valuesss = "plumber";
+  const handleImageClick = () => {
+    setShowPlumber(true);
+  };
   return (
     <>
       <img
@@ -79,12 +87,14 @@ export default function Explore() {
             <div>
               <Card>
                 <div>
-                  <img
-                    src={plumberIcon}
-                    alt="home"
-                    className="your-element"
-                    // onClick={() => shortCutSearch("plumber")}
-                  />
+                  <Link to={`/filter-listings`} state={{ distance: "plumber" }}>
+                    <img
+                      src={plumberIcon}
+                      alt="home"
+                      className="your-element"
+                      // onClick={handleImageClick}
+                    />
+                  </Link>
                 </div>
               </Card>
               <p className="txt-center">plumber</p>
@@ -100,12 +110,15 @@ export default function Explore() {
             <div>
               <Card>
                 <div>
-                  <img
-                    src={carpenterIcon}
-                    alt="home"
-                    className="your-element"
-                    // onClick={() => shortCutSearch("carpenter")}
-                  />
+                <Link to={`/filter-listings`} state={{ distance: "carpenter" }}>
+                    <img
+                      src={carpenterIcon}
+                      alt="home"
+                      className="your-element"
+                      // onClick={handleImageClick}
+                    />
+                  </Link>
+                 
 
                   {/* <p
                 className="listingType"
@@ -120,12 +133,15 @@ export default function Explore() {
 
             <div>
               <Card>
-                <img
-                  src={painterIcon}
-                  alt="home"
-                  className="your-element"
-                  // onClick={() => shortCutSearch("painter")}
-                />
+              <Link to={`/filter-listings`} state={{ distance: "painter" }}>
+                    <img
+                      src={painterIcon}
+                      alt="home"
+                      className="your-element"
+                      // onClick={handleImageClick}
+                    />
+                  </Link>
+               
               </Card>
               <p className="txt-center">Painter</p>
             </div>
@@ -136,24 +152,26 @@ export default function Explore() {
                 Painter
               </p> */}
 
-<div>
-            <Card>
-              <img
-                src={constIcon}
-                alt="home"
-                className="your-element"
-                // onClick={() => shortCutSearch("distance")}
-              />
-            
+            <div>
+              <Card>
+              <Link to={`/filter-listings`} state={{ distance: "mistri" }}>
+                    <img
+                      src={constIcon}
+                      alt="home"
+                      className="your-element"
+                      // onClick={handleImageClick}
+                    />
+                  </Link>
+               
 
-              {/* <p
+                {/* <p
                 className="listingType"
                 onClick={() => shortCutSearch("distance")}
               >
                 Distance
               </p> */}
-            </Card>
-            <p className="txt-center">Mason</p>
+              </Card>
+              <p className="txt-center">Mason</p>
             </div>
           </li>
 

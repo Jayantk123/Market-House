@@ -1,0 +1,46 @@
+{
+    "create a listing":"ਲਿਸਟਿੰਗ ਬਣਾਓ",
+    "daily/salary wage":"ਦੈਨਿਕ / ਤਨਖਾਹ",
+    "daily":"ਦੈਨਿਕ",
+    "salary":"ਤਨਖਾਹ",
+    "name": "ਨਾਮ",
+    "contact":"ਸੰਪਰਕ ਨੰਬਰ",
+    "address":"ਪਤਾ",
+    "experience":"ਅਨੁਭਵ",
+    "age":"ਉਮਰ",
+    "min 20 year":"ਘੱਟੋ-ਘੱਟ 20 ਸਾਲ",
+    "rate":"ਦਰ",
+    "per month":"ਪ੍ਰਤੀ ਮਹੀਨੇ ₹",
+    "calculate":"ਗਿਣਤੀ ਕਰੋ",
+    "min wage calculated":"ਤੁਹਾਡਾ ਘੱਟੋ-ਘੱਟ ਵੇਤਨ ਹੈ:",
+    "type of work":"ਕੰਮ ਦੀ ਕਿਸਮ",
+    "plumber":"ਪਲੰਬਰ",
+    "carpenter":"ਕਾਰਪੈਂਟਰ",
+    "painter":"ਪੇਂਟਰ",
+    "mistri":"ਮਿਸਤਰੀ",
+    "electrician":"ਬਿਜਲੀ ਤੇਜ",
+    "mechanic": "ਮਕੈਨਿਕ",
+    "upload profile image":"ਪ੍ਰੋਫਾਇਲ ਚਿੱਤਰ ਅੱਪਲੋਡ ਕਰੋ",
+    "image label":"ਪਹਿਲਾਂ ਦਿੱਤਾ ਗਿਆ ਚਿੱਤਰ ਕਵਰ ਹੋਵੇਗਾ (ਜ਼ਿਆਦਾਤਰ 1).",
+    "upload aadhar":"ਆਧਾਰ ਚਿੱਤਰ ਅੱਪਲੋਡ ਕਰੋ",
+    "aadhar label":"ਪਹਿਲਾਂ ਦਿੱਤਾ ਗਿਆ ਚਿੱਤਰ ਕਵਰ ਹੋਵੇਗਾ (ਜ਼ਿਆਦਾਤਰ 2).",
+    "create listing button": "ਲਿਸਟਿੰਗ ਬਣਾਓ",
+
+
+    "dailywageselected":"ਤੁਸੀਂ ਡੇਲੀ ਵੇਜ਼ ਚੁਣਿਆ ਹੈ",
+"salarywageselected":"ਤੁਸੀਂ ਤਨਖਾਹ ਚੁਣਿਆ ਹੈ",
+"nameselected":"ਕਿਰਪਾ ਕਰਕੇ ਆਪਣਾ ਨਾਮ ਦਰਜ ਕਰੋ",
+"contactselected":"ਕਿਰਪਾ ਕਰਕੇ ਆਪਣਾ ਸੰਪਰਕ ਨੰਬਰ ਦਰਜ ਕਰੋ",
+"addressselected":"ਕਿਰਪਾ ਕਰਕੇ ਆਪਣਾ ਪਤਾ ਦਰਜ ਕਰੋ",
+"experienceselected":"ਕਿਰਪਾ ਕਰਕੇ ਅਪਨਾ ਅਨੁਭਵ ਦਰਜ ਕਰੋ",
+"ageselected":"ਕਿਰਪਾ ਕਰਕੇ ਆਪਣੀ ਉਮਰ ਦਰਜ ਕਰੋ",
+"rateselected":"ਆਪਣੀ ਮੁਆਵਜਾ ਦੀ ਦਰ ਸੰਰਚਿਤ ਕਰੋ",
+"workselected":"ਆਪਣੇ ਕੰਮ ਦਾ ਚੁਣਾਅ ਕਰੋ",
+"profileselected":"ਪ੍ਰੋਫਾਈਲ ਚਿੱਤਰ ਅਪਲੋਡ ਕਰੋ",
+"aadharselectd":"ਆਧਾਰ ਚਿੱਤਰ ਅਪਲੋਡ ਕਰੋ"
+    }
+    
+    
+    
+    
+    

@@ -1,15 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { ReactComponent as DeleteIcon } from "../assets/svg/deleteIcon.svg";
 import { ReactComponent as EditIcon } from "../assets/svg/editIcon.svg";
-// import Card from "./Card";
-import bedIcon from "../assets/svg/bedIcon.svg";
-import bathtubIcon from "../assets/svg/bathtubIcon.svg";
 import mapIcon from "../assets/jpg/maplogo.jpeg";
 import Card from "../pages/Card";
 
+
 export default function ListingItem({ listing, id, dis, onEdit, onDelete }) {
-  console.log(dis + " " + id);
+  const [isBought, setIsBought] = useState(false); // State to track if worker is bought
+
+
+
+  console.log(dis + " abc" + id);
 
   console.log(listing);
 
@@ -30,22 +32,26 @@ export default function ListingItem({ listing, id, dis, onEdit, onDelete }) {
 
           <div className="categoryListingDetails">
             <p className="categoryListingName">
-              {listing.name} <p className="listingType">3.5 🌟</p>
+              {listing.name} 
+              {/* <p className="listingType">{listing.rating}🌟</p> */}
             </p>
 
             {/* <p className="categoryListingLocation">Ph No. : { listing.number}</p> */}
             {/* <p className="categoryListingLocation">Experience : { listing.experience}</p> */}
             {/* <p className="categoryListingLocation">Age : { listing.age}</p> */}
-
+            <p className="listingType">{listing.rating}🌟</p>
             <p className="starRating">{listing.work}</p>
             {/* <p className="starRating">3.5 🌟</p> */}
-            {dis && <p className="starRating">{dis.toFixed(0)} km</p>}
+           
+          
 
             <br />
+             {/* {dis && <p className="starRating">{dis.toFixed(0)} km</p>} */}
             {/* <p className="categoryListingLocation">Experience : { listing.experience}</p> */}
 
             {/* <p className>{listing.work}</p> */}
             <div style={{ display: "flex", alignItems: "center" }}>
+            {dis && <p className="starRating">{dis.toFixed(0)} km</p>}
               <img src={mapIcon} alt="" style={{ marginRight: "8px" }} />
               <p className="categoryListingLocation">
                 {" "}
@@ -81,6 +87,7 @@ export default function ListingItem({ listing, id, dis, onEdit, onDelete }) {
           </div> */}
           </div>
         </Link>
+       
         {onDelete && (
           <DeleteIcon
             className="removeIcon"

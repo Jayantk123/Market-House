@@ -2,19 +2,20 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
-import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import 'swiper/swiper-bundle.css'
+import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/swiper-bundle.css";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { getDoc, doc } from "firebase/firestore";
+import { getDoc, doc, updateDoc } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { db } from "../firebase.config";
-import { useLocation } from "react-router-dom"
+import { useLocation } from "react-router-dom";
 
 // import Card from "../Components/Card";
 import Spinner from "../Components/Spinner";
 import shareIcon from "../assets/svg/shareIcon.svg";
 import Card from "./Card";
+import { toast } from "react-toastify";
 
 // import Rating from "rc-ratings";
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
@@ -22,9 +23,10 @@ export default function Listing() {
   const [listing, setListing] = useState(null);
   const [loading, setLoading] = useState(true);
   const [shareLinkCopied, setSetShareLinkCopied] = useState(false);
+  const [buy, setBuy] = useState(false);
 
   const navigate = useNavigate();
-  const location = useLocation()
+  const location = useLocation();
   const params = useParams();
   const auth = getAuth();
 
@@ -42,6 +44,7 @@ export default function Listing() {
     fetchListing();
   }, [navigate, params.listingId]);
 
+  console.log(listing);
   if (loading) return <Spinner />;
 
   // console.log(listing.imageUrls[0]);
@@ -49,10 +52,38 @@ export default function Listing() {
     console.log(newRating);
   };
 
-  
-  const currentDistance = location.state?.distance
+  const currentDistance = location.state?.distance;
   // const {form}=Listing.state
   console.log(currentDistance);
+
+  const handleBuyClick = async () => {
+  const docRef = doc(db, "listings", params.listingId);
+    await updateDoc(
+      docRef,
+     {
+        buy: true,
+      }
+    );
+    setBuy(true);
+
+    toast.success("Added to Card");
+  };
+  const handleRemoveClick = async () => {
+    const confirmResult = window.confirm('Are you sure you want to remove this item?');
+  if(confirmResult) {
+  const docRef = doc(db, "listings", params.listingId);
+    await updateDoc(
+      docRef,
+     {
+        buy: false,
+      }
+    );
+    setBuy(false);
+
+    toast.success("Removed from cart");
+  }
+  };
+
   return (
     <main>
       <Swiper slidesPerView={1} pagination={{ clickable: true }}>
@@ -80,11 +111,9 @@ export default function Listing() {
         }}
       >
         <img src={shareIcon} alt="" />
-       
       </div>
       {shareLinkCopied && <p className="linkCopied">Link Copied!</p>}
 
-    
       <div className="listingDetails">
         <div className="categoryListing">
           <img
@@ -104,7 +133,7 @@ export default function Listing() {
               {listing.type === "daily" ? "Daily" : "Salary"} Worker
             </p>
             <p className="listingType">{listing.work}</p>
-           
+
             {listing.offer && (
               <p className="discountPrice">
                 ${listing.regularPrice - listing.discountedPrice} discount
@@ -119,11 +148,20 @@ export default function Listing() {
                 Experience : {listing.experience}
               </p>
               <p className="categoryListingLocation">Age : {listing.age}</p>
-               {currentDistance && (
-              <p className="">{currentDistance.toFixed(0)} Km</p>
-            )}
+              {currentDistance && (
+                <p className="">{currentDistance.toFixed(0)} Km</p>
+              )}
               <p className="listingStar">⭐⭐⭐⭐⭐</p>
-              
+{!buy ? (
+ <button className="formButtonActive" onClick={handleBuyClick}>
+ buy
+</button>
+):(
+  <button className="formButtonActiveRemove" onClick={handleRemoveClick}>
+ remove
+</button> 
+)}
+             
             </div>
             <ul className="listingDetailsList">
               <li>{listing.parking && "Parking Spot"}</li>
@@ -134,7 +172,6 @@ export default function Listing() {
 
         <h2 className="listingLocationTitle">Feedback</h2>
         <Card>
-       
           <p>
             "Great job on completing the project ahead of schedule, your hard
             work is much appreciated!"
@@ -146,27 +183,6 @@ export default function Listing() {
             job communicating the key points effectively."
           </p>
         </Card>
-
-        {/* <Card>
-          <div className="text-display">
-            <h4>Ankush~</h4>
-            <p>
-              "I appreciated that you were on time for the job" or "I noticed
-              that you forgot to clean up after finishing the work."
-            </p>
-          </div>
-        </Card>
-        <Card>
-          <div className="text-display">
-            <h4>Akshay~</h4>
-            <p>
-              "Great job on that project! Your attention to detail and ability
-              to work efficiently made a significant impact on the team's
-              success."
-            </p>
-          </div>
-        </Card>
-      */}
 
         <p className="listingLocationTitle">Location</p>
 
@@ -197,9 +213,7 @@ export default function Listing() {
           >
             Contact Landlord
           </Link>
-          
         )}
-        
       </div>
     </main>
   );

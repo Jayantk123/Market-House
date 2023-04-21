@@ -1,0 +1,46 @@
+{
+    "create a listing":"સૂચવો બનાવો",
+    "daily/salary wage":"દૈનિક / પગાર પગાર",
+    "daily":"દૈનિક",
+    "salary":"પગાર",
+    "name": "નામ",
+    "contact":"સંપર્ક",
+    "address":"સરનામું",
+    "experience":"અનુભવ",
+    "age":"ઉંમર",
+    "min 20 year":"20 થી ઓછી ઉંમર",
+    "rate":"ભાવ",
+    "per month":"પ્રતિ મહિને",
+    "calculate":"હિસાબ કરો",
+    "min wage calculated":"તમારો ન્યૂનતમ પગાર છે:",
+    "type of work":"કામનો પ્રકાર",
+    "plumber":"પ્લમ્બર",
+    "carpenter":"કારપેન્ટર",
+    "painter":"પેંટર",
+    "mistri":"મિસ્ત્રી",
+    "electrician":"ઇલેક્ટ્રિશિયન",
+    "mechanic": "મેકેનિક",
+    "upload profile image":"પ્રોફાઇલ ચિત્ર અપલોડ કરો",
+    "image label":"પહેલા ચિત્ર કવર હશે (મહત્તમ 1).",
+    "upload aadhar":"આધાર ચિત્રો અપલોડ કરો",
+    "aadhar label":"પહેલો ચિત્ર કવર હશે (મહત્તમ 2).",
+    "create listing button": "સૂચવો બનાવો",
+
+
+    "dailywageselected":"તમે દૈનિક પગાર પસંદ કર્યું છે",
+"salarywageselected":"તમે પગાર પસંદ કર્યો છે",
+"nameselected":"કૃપા કરીને તમારું નામ દાખલ કરો",
+"contactselected":"કૃપા કરીને તમારો સંપર્ક નંબર દાખલ કરો",
+"addressselected":"કૃપા કરીને તમારું સરનામું દાખલ કરો",
+"experienceselected":"કૃપા કરીને તમારું અનુભવ દાખલ કરો",
+"ageselected":"કૃપા કરીને તમારી ઉંમર દાખલ કરો",
+"rateselected":"તમારી મંજૂરીની દર સુયોજિત કરો",
+"workselected":"તમારું કામ પસંદ કરો",
+"profileselected":"પ્રોફાઇલ ચિત્ર અપલોડ કરો",
+"aadharselectd":"આધાર ચિત્ર અપલોડ કરો"
+    }
+    
+    
+    
+    
+    
