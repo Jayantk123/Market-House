@@ -819,6 +819,19 @@ button {
   align-items: center;
 }
 
+.paymentButton {
+  cursor: pointer;
+  padding: 0.5rem 2.5rem;
+  background-color: #ffffff;
+  font-weight: 600;
+  border-radius: 1rem;
+  font-size: 1rem;
+  margin: 0.5rem 0.5rem 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 
 
 .seachinput{
@@ -836,6 +849,10 @@ button {
   /* align-items: center; */
 }
 .formButtonActive {
+  background-color: #00cc66;
+  color: #ffffff;
+}
+.paymentButton {
   background-color: #00cc66;
   color: #ffffff;
 }

@@ -5,17 +5,10 @@ import { ReactComponent as EditIcon } from "../assets/svg/editIcon.svg";
 import mapIcon from "../assets/jpg/maplogo.jpeg";
 import Card from "../pages/Card";
 
-
 export default function ListingItem({ listing, id, dis, onEdit, onDelete }) {
-  const [isBought, setIsBought] = useState(false); // State to track if worker is bought
-
-
-
-  console.log(dis + " abc" + id);
-
-  console.log(listing);
-
-  console.log(listing.location.split(",")[0]);
+  // console.log(dis + " abc" + id);
+  // console.log(listing);
+  // console.log(listing.location.split(",")[0]);
   return (
     <Card>
       <li className="categoryListing">
@@ -32,7 +25,7 @@ export default function ListingItem({ listing, id, dis, onEdit, onDelete }) {
 
           <div className="categoryListingDetails">
             <p className="categoryListingName">
-              {listing.name} 
+              {listing.name}
               {/* <p className="listingType">{listing.rating}🌟</p> */}
             </p>
 
@@ -42,16 +35,14 @@ export default function ListingItem({ listing, id, dis, onEdit, onDelete }) {
             <p className="listingType">{listing.rating}🌟</p>
             <p className="starRating">{listing.work}</p>
             {/* <p className="starRating">3.5 🌟</p> */}
-           
-          
 
             <br />
-             {/* {dis && <p className="starRating">{dis.toFixed(0)} km</p>} */}
+            {/* {dis && <p className="starRating">{dis.toFixed(0)} km</p>} */}
             {/* <p className="categoryListingLocation">Experience : { listing.experience}</p> */}
 
             {/* <p className>{listing.work}</p> */}
             <div style={{ display: "flex", alignItems: "center" }}>
-            {dis && <p className="starRating">{dis.toFixed(0)} km</p>}
+              {dis && <p className="starRating">{dis.toFixed(0)} km</p>}
               <img src={mapIcon} alt="" style={{ marginRight: "8px" }} />
               <p className="categoryListingLocation">
                 {" "}
@@ -87,7 +78,7 @@ export default function ListingItem({ listing, id, dis, onEdit, onDelete }) {
           </div> */}
           </div>
         </Link>
-       
+
         {onDelete && (
           <DeleteIcon
             className="removeIcon"

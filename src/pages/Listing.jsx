@@ -16,6 +16,7 @@ import Spinner from "../Components/Spinner";
 import shareIcon from "../assets/svg/shareIcon.svg";
 import Card from "./Card";
 import { toast } from "react-toastify";
+import CartIcon from "../Components/CartIcon";
 
 // import Rating from "rc-ratings";
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
@@ -37,6 +38,8 @@ export default function Listing() {
 
       if (docSnap.exists()) {
         setListing(docSnap.data());
+        setBuy(docSnap.data().buy);
+        // console.log(docSnap.data());
         setLoading(false);
       }
     };
@@ -45,6 +48,7 @@ export default function Listing() {
   }, [navigate, params.listingId]);
 
   console.log(listing);
+  console.log(buy);
   if (loading) return <Spinner />;
 
   // console.log(listing.imageUrls[0]);
@@ -152,6 +156,7 @@ export default function Listing() {
                 <p className="">{currentDistance.toFixed(0)} Km</p>
               )}
               <p className="listingStar">⭐⭐⭐⭐⭐</p>
+             
 {!buy ? (
  <button className="formButtonActive" onClick={handleBuyClick}>
  buy
@@ -161,6 +166,11 @@ export default function Listing() {
  remove
 </button> 
 )}
+
+
+
+
+
              
             </div>
             <ul className="listingDetailsList">

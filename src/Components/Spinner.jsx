@@ -1,5 +1,6 @@
 import React from 'react'
 import loading from '../assets/gif/loading.gif'
+import load from '../assets/gif/load.gif'
 
 export default function Spinner() {
   return (
@@ -11,9 +12,12 @@ export default function Spinner() {
     <div>
          
     <div className="loading-container">
-    <img className="loading-gif" src={loading} alt="Loading GIF" />
+    <img className="loading-gif" src={load} alt="Loading GIF" />
     
     </div>
+
+
+    
 
 </div>
   )

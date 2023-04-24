@@ -113,6 +113,7 @@ export default function CreateWorkerListing() {
     rating: 2.5,
     work: "",
     value: "",
+    buy:false,
     images: {},
     aadharImages: {},
     latitude: 0,

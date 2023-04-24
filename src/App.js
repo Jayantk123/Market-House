@@ -20,6 +20,7 @@ import CreateWorkerListingHindi from "./pages/CreateWorkerListingHindi";
 import Location from "./pages/Location";
 import SpeechInput from "./pages/SpeechInput";
 import FilterListing from "./pages/FilterListing";
+import Cart from "./pages/Cart"
 
 
 export default function App() {
@@ -49,6 +50,8 @@ export default function App() {
           />
           <Route path="/contact/:landloardId/" element={<Contact />} />
           <Route path="/location" element={<Location />} />
+          <Route path="/cart" element={<Cart/>} />
+
           
         </Routes>
 

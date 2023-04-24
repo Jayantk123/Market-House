@@ -331,33 +331,7 @@ const salaryFilterDescending = () =>{
           <Card>
       <div className="card-container">
         <ul className="categoryListing">
-          <li>
-            <img
-              src={plumberIcon}
-              alt="home"
-              className="your-element"
-              onClick={() => shortCutSearch('plumber')}
-            />
-            
-          </li>
-         
-          <li>
-            <img
-              src={carpenterIcon}
-              alt="home"
-              className="your-element"
-              onClick={() => shortCutSearch('carpenter')}
-            />
-          </li>
-          <li>
-            <img
-              src={painterIcon}
-              alt="home"
-              className="your-element"
-              onClick={() => shortCutSearch('painter')}
-            />
-          </li>
-          <li>
+        <li>
             <img
               src={distanceIcon}
               alt="home"
@@ -395,6 +369,33 @@ const salaryFilterDescending = () =>{
               onClick={() => ratingFilter()}
             />
           </li>
+          <li>
+            <img
+              src={plumberIcon}
+              alt="home"
+              className="your-element"
+              onClick={() => shortCutSearch('plumber')}
+            />
+            
+          </li>
+         
+          <li>
+            <img
+              src={carpenterIcon}
+              alt="home"
+              className="your-element"
+              onClick={() => shortCutSearch('carpenter')}
+            />
+          </li>
+          <li>
+            <img
+              src={painterIcon}
+              alt="home"
+              className="your-element"
+              onClick={() => shortCutSearch('painter')}
+            />
+          </li>
+         
          
         </ul>
       </div>

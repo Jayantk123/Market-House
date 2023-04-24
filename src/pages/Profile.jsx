@@ -18,6 +18,7 @@ import { toast } from "react-toastify";
 import ListingItem from "../Components/ListingItem";
 import arrowRight from "../assets/svg/keyboardArrowRightIcon.svg";
 import homeIcon from "../assets/svg/homeIcon.svg";
+import AddToCart from "./AddToCart";
 
 export default function Profile() {
   const auth = getAuth();
@@ -43,12 +44,12 @@ export default function Profile() {
         listingsRef,
         where("userRef", "==", auth.currentUser.uid),
         orderBy("timestamp", "desc"),
-        limit(10)
+       
       );
 
       const querySnap = await getDocs(q);
-      const lastVisible = querySnap.docs[querySnap.docs.length - 1];
-      setLastFetchedListing(lastVisible);
+      // const lastVisible = querySnap.docs[querySnap.docs.length - 1];
+      // setLastFetchedListing(lastVisible);
 
       const listings = [];
 
@@ -111,37 +112,38 @@ export default function Profile() {
       toast.success("Successfully deleted listing");
     }
   };
+  console.log(listings);
 
 const onEdit = (listingId)=>navigate(`/edit-listing/${listingId}`)
 
-  // pagination...load more
-  const onFetchMoreListings = async () => {
-    const listingsRef = collection(db, "listings");
+  // // pagination...load more
+  // const onFetchMoreListings = async () => {
+  //   const listingsRef = collection(db, "listings");
 
-    const q = query(
-      listingsRef,
-      where("userRef", "==", auth.currentUser.uid),
-      orderBy("timestamp", "desc"),
-      startAfter(lastFetchedListing),
-      limit(10)
-    );
+  //   const q = query(
+  //     listingsRef,
+  //     where("userRef", "==", auth.currentUser.uid),
+  //     orderBy("timestamp", "desc"),
+  //     startAfter(lastFetchedListing),
+  //     limit(10)
+  //   );
 
-    const querySnap = await getDocs(q);
-    const lastVisible = querySnap.docs[querySnap.docs.length - 1];
-    setLastFetchedListing(lastVisible);
+  //   const querySnap = await getDocs(q);
+  //   const lastVisible = querySnap.docs[querySnap.docs.length - 1];
+  //   setLastFetchedListing(lastVisible);
 
-    const listings = [];
+  //   const listings = [];
 
-    querySnap.forEach((doc) => {
-      return listings.push({
-        id: doc.id,
-        data: doc.data(),
-      });
-    });
+  //   querySnap.forEach((doc) => {
+  //     return listings.push({
+  //       id: doc.id,
+  //       data: doc.data(),
+  //     });
+  //   });
 
-    setListings((prevState) => [...prevState, ...listings]);
-    setLoading(false);
-  };
+  //   setListings((prevState) => [...prevState, ...listings]);
+  //   setLoading(false);
+  // };
   return (
     <>
       <div className="profile">
@@ -198,20 +200,22 @@ const onEdit = (listingId)=>navigate(`/edit-listing/${listingId}`)
           {/* {!loading && listings?.length > 0 && (
             <>
               <p className="listingText">Your Listings</p>
-              <ul className="listingList">
+             
                 {listings.map((listing) => (
-                  <ListingItem
+                  
+                  <AddToCart
                     key={listing.id}
                     listing={listing.data}
                     id={listing.id}
+                    buy={listing.buy}
                     onDelete={() => onDelete(listing.id)}
                     onEdit={() => onEdit(listing.id)}
                   />
                 ))}
-              </ul>
+              
             </> 
-          )}
- */}
+          )} */}
+
 
 
         </main>
