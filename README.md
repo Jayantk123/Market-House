@@ -16,7 +16,7 @@ Problem 4: There is a need for a platform that creates a seamless and efficient 
 
 Problem 5: Individuals seeking to hire daily laborers often have to travel to other areas to find suitable candidates.
 
-###Solution:
+### Solution:
 <br>
  The platform connects workers(Labours, Painters, carpenters, etc) with potential employers and creates new job opportunities, and promotes economic growth.
 Multilingual support promotes inclusivity in the labor market, creating opportunities for workers and employers.
