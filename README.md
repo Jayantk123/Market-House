@@ -4,7 +4,8 @@
 
 This concept proposes a platform that addresses multiple issues in the job market, such as fragmented job opportunities, difficulty in finding qualified workers, and inefficient hiring processes.
 
-Problem Statement:
+### Problem Statement:
+<br>
 Problem 1: Fragmented and inconsistent job market due to the lack of an efficient and reliable platform connecting workers with potential employers.
 
 Problem 2: Workers struggle to find suitable employment opportunities, resorting to inefficient and time-consuming methods.
@@ -15,7 +16,8 @@ Problem 4: There is a need for a platform that creates a seamless and efficient 
 
 Problem 5: Individuals seeking to hire daily laborers often have to travel to other areas to find suitable candidates.
 
-Solution:
+###Solution:
+<br>
  The platform connects workers(Labours, Painters, carpenters, etc) with potential employers and creates new job opportunities, and promotes economic growth.
 Multilingual support promotes inclusivity in the labor market, creating opportunities for workers and employers.
 Streamlining the hiring process for labor industries saves time and money and helps to hire the best-suited candidates.
