@@ -27,3 +27,23 @@ Paying workers based on experience and compliance with government rules ensures 
 Directly hire workers in bulk through the app, using their experience and skill set as a guide. This enables you to find the right people for the job quickly and easily.
 
  Additionally, employers can view the nearest available workers on a map, along with their distance, making it easier to hire suitable candidates and reduce travel.
+ 
+ ### Screenshots
+ 
+ #### Home Page
+ ![home](https://user-images.githubusercontent.com/58224270/236635589-9a6afca8-5fe4-4874-8455-2fb16f9943a8.PNG)
+
+#### Form
+![registration](https://user-images.githubusercontent.com/58224270/236635624-1755b130-8ac6-4e5c-a453-420e61dfe1b1.PNG)
+![hindi](https://user-images.githubusercontent.com/58224270/236635618-1881b39e-86ee-4f1a-acb3-361a36454f46.PNG)
+
+#### Profile
+![woker profile](https://user-images.githubusercontent.com/58224270/236635638-0fc571f6-070c-4abb-ad6d-a77696677b1e.PNG)
+![worker location](https://user-images.githubusercontent.com/58224270/236635642-73ed3f66-6241-4d06-8220-a5539fef7071.PNG)
+
+#### Listings
+![Picture3](https://user-images.githubusercontent.com/58224270/236635673-d7bbe056-b479-4c79-9d78-681c52b81353.png)
+
+
+
+
