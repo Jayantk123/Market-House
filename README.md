@@ -1,70 +1,27 @@
-# Getting Started with Create React App
+ #KamDhandha~ Ab Kaam Dhundho Ghar Se
+Labour Empowerment App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+This concept proposes a platform that addresses multiple issues in the job market, such as fragmented job opportunities, difficulty in finding qualified workers, and inefficient hiring processes.
 
-In the project directory, you can run:
+Problem Statement:
+Problem 1: Fragmented and inconsistent job market due to the lack of an efficient and reliable platform connecting workers with potential employers.
 
-### `npm start`
+Problem 2: Workers struggle to find suitable employment opportunities, resorting to inefficient and time-consuming methods.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Problem 3: Employers have difficulty finding qualified and skilled workers who are reliable and available at short notice.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Problem 4: There is a need for a platform that creates a seamless and efficient system for connecting workers with potential employers to address these challenges.
 
-### `npm test`
+Problem 5: Individuals seeking to hire daily laborers often have to travel to other areas to find suitable candidates.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Solution:
+ The platform connects workers(Labours, Painters, carpenters, etc) with potential employers and creates new job opportunities, and promotes economic growth.
+Multilingual support promotes inclusivity in the labor market, creating opportunities for workers and employers.
+Streamlining the hiring process for labor industries saves time and money and helps to hire the best-suited candidates.
+Safe and healthy working conditions improve job satisfaction and reduce employee turnover rates.
+Access to reliable and trustworthy workers is essential for building a strong workforce.
+Paying workers based on experience and compliance with government rules ensures fair compensation, increasing job satisfaction and loyalty.
+Directly hire workers in bulk through the app, using their experience and skill set as a guide. This enables you to find the right people for the job quickly and easily.
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+ Additionally, employers can view the nearest available workers on a map, along with their distance, making it easier to hire suitable candidates and reduce travel.
