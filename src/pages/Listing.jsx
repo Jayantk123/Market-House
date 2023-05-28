@@ -18,6 +18,10 @@ import Card from "./Card";
 import { toast } from "react-toastify";
 import CartIcon from "../Components/CartIcon";
 
+// modal
+import Modal from "react-modal";
+Modal.setAppElement("#root");
+
 // import Rating from "rc-ratings";
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 export default function Listing() {
@@ -25,6 +29,15 @@ export default function Listing() {
   const [loading, setLoading] = useState(true);
   const [shareLinkCopied, setSetShareLinkCopied] = useState(false);
   const [buy, setBuy] = useState(false);
+
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const openModal = () => {
+    setModalIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -61,31 +74,27 @@ export default function Listing() {
   console.log(currentDistance);
 
   const handleBuyClick = async () => {
-  const docRef = doc(db, "listings", params.listingId);
-    await updateDoc(
-      docRef,
-     {
-        buy: true,
-      }
-    );
+    const docRef = doc(db, "listings", params.listingId);
+    await updateDoc(docRef, {
+      buy: true,
+    });
     setBuy(true);
 
     toast.success("Added to Card");
   };
   const handleRemoveClick = async () => {
-    const confirmResult = window.confirm('Are you sure you want to remove this item?');
-  if(confirmResult) {
-  const docRef = doc(db, "listings", params.listingId);
-    await updateDoc(
-      docRef,
-     {
-        buy: false,
-      }
+    const confirmResult = window.confirm(
+      "Are you sure you want to remove this item?"
     );
-    setBuy(false);
+    if (confirmResult) {
+      const docRef = doc(db, "listings", params.listingId);
+      await updateDoc(docRef, {
+        buy: false,
+      });
+      setBuy(false);
 
-    toast.success("Removed from cart");
-  }
+      toast.success("Removed from cart");
+    }
   };
 
   return (
@@ -156,22 +165,28 @@ export default function Listing() {
                 <p className="">{currentDistance.toFixed(0)} Km</p>
               )}
               <p className="listingStar">⭐⭐⭐⭐⭐</p>
-             
-{!buy ? (
- <button className="formButtonActive" onClick={handleBuyClick}>
- buy
-</button>
-):(
-  <button className="formButtonActiveRemove" onClick={handleRemoveClick}>
- remove
-</button> 
-)}
 
-
-
-
-
-             
+              <div
+                style={{
+                  display: "flex",
+                }}
+              >
+                {!buy ? (
+                  <button className="formButtonActive" onClick={handleBuyClick}>
+                    buy
+                  </button>
+                ) : (
+                  <button
+                    className="formButtonActiveRemove"
+                    onClick={handleRemoveClick}
+                  >
+                    remove
+                  </button>
+                )}
+                <button className="govSchemes" onClick={openModal}>
+                  GovSchemes
+                </button>
+              </div>
             </div>
             <ul className="listingDetailsList">
               <li>{listing.parking && "Parking Spot"}</li>
@@ -225,6 +240,46 @@ export default function Listing() {
           </Link>
         )}
       </div>
+
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        contentLabel="New Page"
+        overlayClassName="modal-overlay"
+        className="modal-content"
+      >
+        <div className="modal-header">
+        <h2>You are eligible for these schemes.</h2>
+          <button className="close-button" onClick={closeModal}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </button>
+        </div>
+        <div className="modal-body">
+          {/* Content for the new page */}
+        
+          <p>Pradhan Mantri Rojgar Protsahan Yojana (PMRPY):</p>
+          <p>Atal Beemit Vyakti Kalyan Yojana (ABVKY): </p>
+          <p>Pradhan Mantri Shram Yogi Maan-dhan (PM-SYM): </p>
+          <p>e-Shram: </p>
+          <p>
+            Central Sector Scheme for Rehabilitation of Bonded Labourer-2016:
+          </p>
+        </div>
+        {/* <button onClick={closeModal}>Close</button> */}
+      </Modal>
     </main>
   );
 }

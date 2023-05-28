@@ -818,6 +818,67 @@ button {
   justify-content: center;
   align-items: center;
 }
+.govSchemes{
+  padding: 0.9rem 3rem;
+  background-color: #ffffff;
+  font-weight: 600;
+  border-radius: 1rem;
+  font-size: 1rem;
+  margin: 0.5rem 0.5rem 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+}
+.govSchemes {
+  background-color: #47c70c;
+  color: #ffffff;
+}
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+}
+
+.modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: auto;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+}
+
+.close-button svg {
+  width: 16px;
+  height: 16px;
+}
+
+.modal-body {
+  margin-top: 20px;
+}
+
+
 
 .paymentButton {
   cursor: pointer;
