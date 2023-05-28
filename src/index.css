@@ -1218,3 +1218,6 @@ padding: 0.5rem 1rem;
 .your-element {
   /* Add styles for your images as needed */
 }
+.samerow{
+  display: space-between;
+}

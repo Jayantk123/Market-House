@@ -160,40 +160,44 @@ export default function Listing() {
               <p className="categoryListingLocation">
                 Experience : {listing.experience}
               </p>
+              <div className="samerow">
               <p className="categoryListingLocation">Age : {listing.age}</p>
               {currentDistance && (
-                <p className="">{currentDistance.toFixed(0)} Km</p>
+                <p className="categoryListingLocation">{currentDistance.toFixed(0)} Km</p>
               )}
-              <p className="listingStar">⭐⭐⭐⭐⭐</p>
-
-              <div
-                style={{
-                  display: "flex",
-                }}
-              >
-                {!buy ? (
-                  <button className="formButtonActive" onClick={handleBuyClick}>
-                    buy
-                  </button>
-                ) : (
-                  <button
-                    className="formButtonActiveRemove"
-                    onClick={handleRemoveClick}
-                  >
-                    remove
-                  </button>
-                )}
-                <button className="govSchemes" onClick={openModal}>
-                  GovSchemes
-                </button>
+               
               </div>
+              <p className="listingStar">⭐⭐⭐⭐⭐</p>
+           {/* //////////////////////////////////////////////// */}
             </div>
-            <ul className="listingDetailsList">
-              <li>{listing.parking && "Parking Spot"}</li>
-              <li>{listing.furnished && "Furnished"}</li>
-            </ul>
+           
           </div>
         </div>
+
+
+      
+
+<div
+  style={{
+    display: "flex",
+  }}
+>
+  {!buy ? (
+    <button className="formButtonActive" onClick={handleBuyClick}>
+      buy
+    </button>
+  ) : (
+    <button
+      className="formButtonActiveRemove"
+      onClick={handleRemoveClick}
+    >
+      remove
+    </button>
+  )}
+  <button className="govSchemes" onClick={openModal}>
+    GovSchemes
+  </button>
+</div>
 
         <h2 className="listingLocationTitle">Feedback</h2>
         <Card>
