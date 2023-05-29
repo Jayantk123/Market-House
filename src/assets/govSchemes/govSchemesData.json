@@ -1,0 +1,381 @@
+[
+  {
+    "schemeId": 1,
+    "schemeName": "MGNREGA",
+    "ageEligibility": 18,
+    "workTypeEligibility": ["Laborer"],
+    "description": "Mahatma Gandhi National Rural Employment Guarantee Act"
+  },
+  {
+    "schemeId": 2,
+    "schemeName": "PM-SYM",
+    "ageEligibility": 18,
+    "workTypeEligibility": ["Laborer"],
+    "description": "Pradhan Mantri Shram Yogi Maan-Dhan"
+  },
+  {
+    "schemeId": 3,
+    "schemeName": "ESI",
+    "ageEligibility": 18,
+    "workTypeEligibility": ["Organized Sector Worker"],
+    "description": "Employees' State Insurance Scheme"
+  },
+  {
+    "schemeId": 4,
+    "schemeName": "PMSBY",
+    "ageEligibility": 18,
+    "workTypeEligibility": ["Any"],
+    "description": "Pradhan Mantri Suraksha Bima Yojana"
+  },
+  {
+    "schemeId": 5,
+    "schemeName": "PMRPY",
+    "ageEligibility": 18,
+    "workTypeEligibility": ["Employer"],
+    "description": "Pradhan Mantri Rojgar Protsahan Yojana"
+  },
+  {
+    "schemeId": 6,
+    "schemeName": "ABVKY",
+    "ageEligibility": 18,
+    "workTypeEligibility": ["ESI-covered worker"],
+    "description": "Atal Beemit Vyakti Kalyan Yojana"
+  },
+  {
+    "schemeId": 7,
+    "schemeName": "PMKVY",
+    "ageEligibility": 18,
+    "workTypeEligibility": ["Youth"],
+    "description": "Pradhan Mantri Kaushal Vikas Yojana"
+  },
+  {
+    "schemeId": 8,
+    "schemeName": "AABY",
+    "ageEligibility": 18,
+    "workTypeEligibility": ["Any"],
+    "description": "Aam Aadmi Bima Yojana"
+  },
+
+
+  
+    {
+      "schemeId": 1,
+      "schemeName": "PMKVY",
+      "workType":"Mistri",
+    "eligibilityAge": 18,
+      "description": "Pradhan Mantri Kaushal Vikas Yojana",
+      "eligibilityCriteria": "Masons can participate in skill development training programs under PMKVY."
+    },
+  
+   
+    
+    {
+      "schemeId": 5,
+      "schemeName": "Skill India Mission",
+      "workType":"Mistri",
+      "eligibilityAge": 18,
+      "description": "Skill development training for enhanced employability",
+      "eligibilityCriteria": "Masons can participate in skill development programs under the Skill India Mission."
+    },
+    {
+      "schemeId": 6,
+      "schemeName": "MUDRA",
+      "workType":"Mistri",
+      "eligibilityAge": 18,
+      "description": "Micro Units Development and Refinance Agency Ltd.",
+      "eligibilityCriteria": "Masonry businesses can apply for loans under the Pradhan Mantri Mudra Yojana (PMMY)."
+    },
+    {
+      "schemeId": 7,
+      "schemeName": "Cluster Development Programme",
+      "workType":"Mistri",
+      "eligibilityAge": 18,
+      "description": "Supporting the development of industry clusters",
+      "eligibilityCriteria": "Masons can participate in cluster development programs to enhance their businesses."
+    },
+    {
+      "schemeId": 8,
+      "schemeName": "Swachh Bharat Abhiyan",
+      "workType":"Mistri",
+      "eligibilityAge": 18,
+      "description": "Clean India Campaign",
+      "eligibilityCriteria": "Masons can participate in initiatives related to construction and maintenance of sanitation facilities under Swachh Bharat Abhiyan."
+    }
+  ,
+  
+
+
+
+
+
+  
+    {
+      "schemeId": 1,
+      "schemeName": "PMKVY",
+      "workType":"Electrician",
+    "eligibilityAge": 18,
+      "description": "Pradhan Mantri Kaushal Vikas Yojana",
+      "eligibilityCriteria": "Painters workers can participate in skill development training programs under PMKVY."
+    },
+   
+    
+    {
+      "schemeId": 5,
+      "schemeName": "Mudra Yojana",
+      "workType":"Electrician",
+      "eligibilityAge": 18,
+      "description": "Financial support for micro-entrepreneurs",
+      "eligibilityCriteria": "Painters workers can avail loans under the Mudra Yojana to start or expand their painting businesses."
+    },
+    {
+      "schemeId": 6,
+      "schemeName": "NREGA",
+      "workType":"Electrician",
+      "eligibilityAge": 18,
+      "description": "National Rural Employment Guarantee Act",
+      "eligibilityCriteria": "Painters workers in rural areas can participate in NREGA to access guaranteed employment and income."
+    },
+    {
+      "schemeId": 7,
+      "schemeName": "SANKALP",
+      "workType":"Electrician",
+      "eligibilityAge": 18,
+      "description": "Skill development program for enhancing employability",
+      "eligibilityCriteria": "Painters workers can participate in skill development training under SANKALP to enhance their painting skills."
+    },
+
+    {
+      "schemeId": 8,
+      "schemeName": "Udyog Aadhaar Registration",
+      "workType":"Electrician",
+      "eligibilityAge": 18,
+      "description": "Simplified online registration for small businesses",
+      "eligibilityCriteria": "Painters workers can"
+  
+    },
+  
+    {
+      "schemeId": 1,
+      "schemeName": "PMKVY",
+      "workType":"Painter",
+    "eligibilityAge": 18,
+      "description": "Pradhan Mantri Kaushal Vikas Yojana",
+      "eligibilityCriteria": "Painters workers can participate in skill development training programs under PMKVY."
+    },
+    {
+      "schemeId": 2,
+      "schemeName": "CGS",
+      "workType":"Painter",
+      "eligibilityAge": 18,
+      "description": "Credit Guarantee Fund Scheme for Micro and Small Enterprises",
+      "eligibilityCriteria": "Painting businesses can avail collateral-free credit facilities through the Credit Guarantee Fund Scheme."
+    },
+    {
+      "schemeId": 3,
+      "schemeName": "Stand-Up India Scheme",
+      "workType":"Painter",
+      "eligibilityAge": 18,
+      "description": "Encouraging entrepreneurship among women, SCs, and STs",
+      "eligibilityCriteria": "Painters workers from marginalized sections can apply for loans under the Stand-Up India Scheme."
+    },
+    {
+      "schemeId": 4,
+      "schemeName": "Construction Workers' Welfare Scheme",
+      "workType":"Painter",
+      "eligibilityAge": 18,
+      "description": "Welfare schemes for construction workers",
+      "eligibilityCriteria": "Painters workers can benefit from state government schemes for construction workers, providing various benefits."
+    },
+    {
+      "schemeId": 5,
+      "schemeName": "Skill India Mission",
+      "workType":"Painter",
+      "eligibilityAge": 18,
+      "description": "Skill development training for enhanced employability",
+      "eligibilityCriteria": "Painters workers can participate in skill development programs under the Skill India Mission."
+    },
+    {
+      "schemeId": 6,
+      "schemeName": "MUDRA",
+      "workType":"Painter",
+      "eligibilityAge": 18,
+      "description": "Micro Units Development and Refinance Agency Ltd.",
+      "eligibilityCriteria": "Painting businesses can apply for loans under the Pradhan Mantri Mudra Yojana (PMMY)."
+    },
+    {
+      "schemeId": 7,
+      "schemeName": "Cluster Development Programme",
+      "workType":"Painter",
+      "eligibilityAge": 18,
+      "description": "Supporting the development of industry clusters",
+      "eligibilityCriteria": "Painters workers can participate in cluster development programs to enhance their businesses."
+    },
+    {
+      "schemeId": 8,
+      "schemeName": "Swachh Bharat Abhiyan",
+      "workType":"Painter",
+      "eligibilityAge": 18, 
+      "description": "Clean India Campaign",
+      "eligibilityCriteria": "Painters workers can participate in initiatives related to painting public spaces, sanitation facilities, and waste management."
+    }
+  ,
+  
+
+
+
+  {
+    "schemeId": 9,
+    "schemeName": "Construction Workers' Welfare Scheme",
+    "ageEligibility": 18,
+    "workType":"Carpenter",
+    "description": "State-specific welfare scheme for construction workers"
+  }
+,
+  {
+    "schemeId": 1,
+    "schemeName": "MUDRA",
+    "workType":"Carpenter",
+    "eligibilityAge": 18,
+    "description": "Micro Units Development and Refinance Agency Ltd.",
+    "eligibilityCriteria": "Small-scale carpenters can apply for loans under the Pradhan Mantri Mudra Yojana (PMMY)."
+  },
+  {
+    "schemeId": 2,
+    "schemeName": "Skill India Mission",
+    "workType":"Carpenter",
+    "eligibilityAge": 18,
+    "description": "Skill development training for carpenters to enhance their skills and employability.",
+    "eligibilityCriteria": "Carpenters can participate in skill development programs offered under the Skill India Mission."
+  },
+  {
+    "schemeId": 3,
+    "schemeName": "CGS",
+    "workType":"Carpenter",
+    "eligibilityAge": 18,
+    "description": "Credit Guarantee Fund Scheme for Micro and Small Enterprises.",
+    "eligibilityCriteria": "Carpenters can avail collateral-free credit facilities through the Credit Guarantee Fund Scheme."
+  },
+  {
+    "schemeId": 4,
+    "schemeName": "TUFS",
+    "workType":"Carpenter",
+    "eligibilityAge": 18,
+    "description": "Technology Upgradation Fund Scheme.",
+    "eligibilityCriteria": "Small-scale carpenters can receive financial assistance for upgrading their equipment and technology."
+  },
+  {
+    "schemeId": 5,
+    "schemeName": "Stand-Up India Scheme",
+    "workType":"Carpenter",
+    "eligibilityAge": 18,
+    "description": "Supporting entrepreneurship among women, SCs, and STs.",
+    "eligibilityCriteria": "Carpenters from marginalized sections can apply for loans under the Stand-Up India Scheme."
+  },
+  {
+    "schemeId": 6,
+    "schemeName": "PMEGP",
+    "workType":"Carpenter",
+    "eligibilityAge": 18,
+    "description": "Pradhan Mantri Employment Generation Programme.",
+    "eligibilityCriteria": "Financial assistance for setting up micro enterprises, including carpentry businesses."
+  },
+  {
+    "schemeId": 7,
+    "schemeName": "Cluster Development Programme",
+    "workType":"Carpenter",
+    "eligibilityAge": 18,
+    "description": "Supporting the development of industry clusters.",
+    "eligibilityCriteria": "Carpenters can participate in cluster development programs to enhance their businesses."
+  },
+  {
+    "schemeId": 8,
+    "schemeName": "NSIC Schemes",
+    "workType":"Carpenter",
+    "eligibilityAge": 18,
+    "description": "National Small Industries Corporation schemes.",
+    "eligibilityCriteria": "Small-scale carpenters can avail various schemes and support services provided by NSIC."
+  },
+  {
+    "schemeId": 9,
+    "schemeName": "RPL Scheme",
+    "workType":"Carpenter",
+    "eligibilityAge": 18,
+    "description": "Skill Certification and Monetary Reward Scheme.",
+    "eligibilityCriteria": "Carpenters can get skill certification and monetary rewards for their existing skills."
+  },
+
+
+
+
+
+
+
+
+    {
+      "schemeId": 1,
+      "schemeName": "PMKVY",
+      "workType":"Plumber",
+      "eligibilityAge": 18,
+      "description": "Pradhan Mantri Kaushal Vikas Yojana",
+      "eligibilityCriteria": "Plumber workers can participate in skill development training programs under PMKVY."
+    },
+    {
+      "schemeId": 2,
+      "schemeName": "CGS",
+      "workType":"Plumber",
+      "eligibilityAge": 18,
+      "description": "Credit Guarantee Fund Scheme for Micro and Small Enterprises",
+      "eligibilityCriteria": "Plumbing businesses can avail collateral-free credit facilities through the Credit Guarantee Fund Scheme."
+    },
+    {
+      "schemeId": 3,
+      "schemeName": "Stand-Up India Scheme",
+      "workType":"Plumber",
+      "eligibilityAge": 18,
+      "description": "Encouraging entrepreneurship among women, SCs, and STs",
+      "eligibilityCriteria": "Plumber workers from marginalized sections can apply for loans under the Stand-Up India Scheme."
+    },
+    {
+      "schemeId": 4,
+      "schemeName": "Construction Workers' Welfare Scheme",
+      "workType":"Plumber",
+      "eligibilityAge": 18,
+      "description": "Welfare schemes for construction workers",
+      "eligibilityCriteria": "Plumber workers can benefit from state government schemes for construction workers, providing various benefits."
+    },
+    {
+      "schemeId": 5,
+      "schemeName": "Skill India Mission",
+      "workType":"Plumber",
+      "eligibilityAge": 18,
+      "description": "Skill development training for enhanced employability",
+      "eligibilityCriteria": "Plumber workers can participate in skill development programs under the Skill India Mission."
+    },
+    {
+      "schemeId": 6,
+      "schemeName": "MUDRA",
+      "workType":"Plumber",
+      "eligibilityAge": 18,
+      "description": "Micro Units Development and Refinance Agency Ltd.",
+      "eligibilityCriteria": "Plumbing businesses can apply for loans under the Pradhan Mantri Mudra Yojana (PMMY)."
+    },
+    {
+      "schemeId": 7,
+      "schemeName": "Cluster Development Programme",
+      "workType":"Plumber",
+      "eligibilityAge": 18,
+      "description": "Supporting the development of industry clusters",
+      "eligibilityCriteria": "Plumber workers can participate in cluster development programs to enhance their businesses."
+    },
+    {
+      "schemeId": 8,
+      "schemeName": "Swachh Bharat Abhiyan",
+      "workType":"Plumber",
+      "eligibilityAge": 18,
+      "description": "Clean India Campaign",
+      "eligibilityCriteria": "Plumber workers can participate in initiatives related to building toilets, waste management, and sanitation."
+    }
+  
+  
+]
+

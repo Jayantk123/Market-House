@@ -10,6 +10,7 @@ import { getDoc, doc, updateDoc } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { db } from "../firebase.config";
 import { useLocation } from "react-router-dom";
+import schemeData from "../assets/govSchemes/govSchemesData.json";
 
 // import Card from "../Components/Card";
 import Spinner from "../Components/Spinner";
@@ -22,13 +23,14 @@ import CartIcon from "../Components/CartIcon";
 import Modal from "react-modal";
 Modal.setAppElement("#root");
 
-// import Rating from "rc-ratings";
+// import Rating from "rc-ratings"; 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 export default function Listing() {
   const [listing, setListing] = useState(null);
   const [loading, setLoading] = useState(true);
   const [shareLinkCopied, setSetShareLinkCopied] = useState(false);
   const [buy, setBuy] = useState(false);
+  const [eligibleScheme, setEligibleScheme] = useState(" ");
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const openModal = () => {
@@ -43,6 +45,7 @@ export default function Listing() {
   const location = useLocation();
   const params = useParams();
   const auth = getAuth();
+  let eligibleSchemes;
 
   useEffect(() => {
     const fetchListing = async () => {
@@ -58,13 +61,29 @@ export default function Listing() {
     };
 
     fetchListing();
+
+    // Handle the eligible schemes as needed (e.g., display them on the page)
   }, [navigate, params.listingId]);
 
   console.log(listing);
   console.log(buy);
   if (loading) return <Spinner />;
 
-  // console.log(listing.imageUrls[0]);
+  const eligibleGovSchemes = (e) => {
+    console.log(listing);
+    const { age } = listing;
+    eligibleSchemes = schemeData.filter((scheme) => {
+      return (
+        scheme.eligibilityAge <= age &&
+        scheme.workType.toLowerCase() === listing.work.toLowerCase()
+      );
+    });
+    setEligibleScheme(eligibleSchemes);
+    console.log(eligibleSchemes);
+    openModal();
+  };
+  const limitedgovSchemes = Object.values(eligibleScheme).slice(0, 5);
+
   const ratingChanged = (newRating) => {
     console.log(newRating);
   };
@@ -96,7 +115,7 @@ export default function Listing() {
       toast.success("Removed from cart");
     }
   };
-
+  console.log(eligibleSchemes);
   return (
     <main>
       <Swiper slidesPerView={1} pagination={{ clickable: true }}>
@@ -161,43 +180,40 @@ export default function Listing() {
                 Experience : {listing.experience}
               </p>
               <div className="samerow">
-              <p className="categoryListingLocation">Age : {listing.age}</p>
-              {currentDistance && (
-                <p className="categoryListingLocation">{currentDistance.toFixed(0)} Km</p>
-              )}
-               
+                <p className="categoryListingLocation">Age : {listing.age}</p>
+                {currentDistance && (
+                  <p className="categoryListingLocation">
+                    {currentDistance.toFixed(0)} Km
+                  </p>
+                )}
               </div>
               <p className="listingStar">⭐⭐⭐⭐⭐</p>
-           {/* //////////////////////////////////////////////// */}
+              {/* //////////////////////////////////////////////// */}
             </div>
-           
           </div>
         </div>
 
-
-      
-
-<div
-  style={{
-    display: "flex",
-  }}
->
-  {!buy ? (
-    <button className="formButtonActive" onClick={handleBuyClick}>
-      buy
-    </button>
-  ) : (
-    <button
-      className="formButtonActiveRemove"
-      onClick={handleRemoveClick}
-    >
-      remove
-    </button>
-  )}
-  <button className="govSchemes" onClick={openModal}>
-    GovSchemes
-  </button>
-</div>
+        <div
+          style={{
+            display: "flex",
+          }}
+        >
+          {!buy ? (
+            <button className="formButtonActive" onClick={handleBuyClick}>
+              buy
+            </button>
+          ) : (
+            <button
+              className="formButtonActiveRemove"
+              onClick={handleRemoveClick}
+            >
+              remove
+            </button>
+          )}
+          <button className="govSchemes" onClick={eligibleGovSchemes}>
+            GovSchemes
+          </button>
+        </div>
 
         <h2 className="listingLocationTitle">Feedback</h2>
         <Card>
@@ -253,7 +269,7 @@ export default function Listing() {
         className="modal-content"
       >
         <div className="modal-header">
-        <h2>You are eligible for these schemes.</h2>
+          <h2>You are eligible for these schemes.</h2>
           <button className="close-button" onClick={closeModal}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -272,17 +288,13 @@ export default function Listing() {
           </button>
         </div>
         <div className="modal-body">
-          {/* Content for the new page */}
-        
-          <p>Pradhan Mantri Rojgar Protsahan Yojana (PMRPY):</p>
-          <p>Atal Beemit Vyakti Kalyan Yojana (ABVKY): </p>
-          <p>Pradhan Mantri Shram Yogi Maan-dhan (PM-SYM): </p>
-          <p>e-Shram: </p>
-          <p>
-            Central Sector Scheme for Rehabilitation of Bonded Labourer-2016:
-          </p>
+          {Object.values(limitedgovSchemes).map((schemes, key) => (
+            <p>
+              <b>{schemes.schemeName}</b>: {schemes.description}
+            </p>
+          ))}
+          <p>{eligibleSchemes}</p>
         </div>
-        {/* <button onClick={closeModal}>Close</button> */}
       </Modal>
     </main>
   );
