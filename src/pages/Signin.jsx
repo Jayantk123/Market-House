@@ -3,9 +3,11 @@ import { Link, useNavigate } from "react-router-dom";
 import { ReactComponent as ArrowRightIcon } from "../assets/svg/keyboardArrowRightIcon.svg";
 import visibilityIcon from "../assets/svg/visibilityIcon.svg";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import {toast} from 'react-toastify'
+import { toast } from "react-toastify";
 import OAuth from "../Components/OAuth";
-import Plumber from "../assets/jpg/pilumber.jpeg"
+import Plumber from "../assets/jpg/pilumber.jpeg";
+import carton1 from "../assets/jpg/login-img1.png";
+
 export default function Signin() {
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
@@ -42,7 +44,7 @@ export default function Signin() {
         userCredential._tokenResponse.refreshToken
       );
     } catch (error) {
-    toast.error('Bad User Credentials')
+      toast.error("Bad User Credentials");
     }
   };
 
@@ -53,8 +55,8 @@ export default function Signin() {
           <p className="pageHeader">Welcome Back!</p>
         </header>
 
-<img src={Plumber} alt="" className="loginImage"/>
-<br />
+        <img src={carton1} alt="" className="loginImage" />
+        <br />
         <form onSubmit={onSubmit}>
           {/* email */}
           <input
@@ -94,9 +96,9 @@ export default function Signin() {
           </Link>
 
           <div className="signInBar">
-          <button  className="primaryButton createListingButton">
-          Sign In
-          </button>
+            <button className="primaryButton createListingButton">
+              Sign In
+            </button>
             {/* <p className="signInText"></p>
             <button className="signInButton">
               <ArrowRightIcon fill="#ffffff" width="34px" height="34px" />
@@ -104,17 +106,20 @@ export default function Signin() {
           </div>
         </form>
         <p className="or">or</p>
-{/* 
+        {/* 
         <div className="signInBar">
           <button  className="primaryButton createListingButton">
           Sign In
           </button>
          
           </div> */}
-       <OAuth />
-       <br />
+        <OAuth />
+        <br />
 
-       <br /><br /><br /><br />
+        <br />
+        <br />
+        <br />
+        <br />
         {/* <Link to="/sign-up" className="registerLink">
           Sign Up with Google
         </Link> */}
