@@ -40,7 +40,7 @@ export default function Cart() {
   const [lastFetchedListing, setLastFetchedListing] = useState(null);
   const [search, setSearch] = useState("");
   const [searchlisting, setSearchListing] = useState(null);
-  const [authId, setAuthId] = useState("RYVrHoDFWmN3sDz2enxgVBuo1tx1");
+  const [authId, setAuthId] = useState("");
   const [distData, setDistData] = useState(null);
   const params = useParams();
   const auth = getAuth();
@@ -56,7 +56,7 @@ export default function Cart() {
 
         const q = query(
           listingsRef,
-          where("userRef", "==", authId),
+          // where("userRef", "==", auth.currentUser.uid),
 
           orderBy("timestamp", "desc")
         );
@@ -80,7 +80,7 @@ export default function Cart() {
 
         setLoading(false);
       } catch (error) {
-        toast.error("Could not fetch listings");
+        toast.error("Please login first");
       }
     };
 
@@ -100,7 +100,7 @@ export default function Cart() {
   // Iterate through the array and count objects with `buy` set to `true`
   for (let i = 0; i < listing?.length; i++) {
     if (listing[i].buy === true) {
-      totalwage += listing[i].data.rate;
+      totalwage += parseInt(listing[i].data.rate);
       trueCount++;
     }
   }
@@ -110,12 +110,35 @@ export default function Cart() {
   if (loading) {
     return <Spinner />;
   }
+
+  console.log(auth.currentUser);
+  if (auth.currentUser === null) {
+    return (
+      <>
+        <Card>
+          <div className="">
+            <Link to="/sign-in">Your cart is empty. Please login first.</Link>
+
+            {/* clear funcion */}
+            {/* <div>
+           
+              {searchlisting.length>0 &&( <button onClick={handleClear} className="listingType ">Clear</button>)}
+            </div> */}
+          </div>
+        </Card>
+      </>
+    );
+  }
   return (
     <>
+  
+      
+    
       {!loading && listing?.length > 0 && (
         <>
+        <Card>
           <div>
-            <p className="listingText">Added Workers</p>
+            <p className="cartHeadingText">Added Workers</p>
           </div>
 
           {/* <p>Your total wage is: {totalwage}</p> */}
@@ -123,8 +146,8 @@ export default function Cart() {
             style={{ display: "flex", alignItems: "center" }}
             className="categoryListing"
           >
-            <p style={{ marginRight: "1rem" }}>
-              Your total wage is: {totalwage}
+            <p className="cartWage">
+              Your total wage is: <b>{totalwage}</b>
             </p>
             {/* <button>Make Payment</button> */}
 
@@ -138,7 +161,7 @@ export default function Cart() {
               Make Payment
             </button>
           </div>
-
+          </Card>
           {listing.map((listing) => (
             <AddToCart
               key={listing.id}

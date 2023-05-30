@@ -26,14 +26,13 @@ import starFilterIcon from "../assets/png/starfilter.png";
 import incSalaryIcon from "../assets/png/incsalary.png";
 import decSalaryIcon from "../assets/png/decsalary.png";
 
-
 export default function Offers() {
   const [listings, setListings] = useState(null);
   const [loading, setLoading] = useState(true);
   const [lastFetchedListing, setLastFetchedListing] = useState(null);
   const [search, setSearch] = useState("");
   const [searchlisting, setSearchListing] = useState(null);
-  const [authId, setAuthId] = useState("RYVrHoDFWmN3sDz2enxgVBuo1tx1");
+  const [authId, setAuthId] = useState("");
   const [distData, setDistData] = useState(null);
   const params = useParams();
   const auth = getAuth();
@@ -49,7 +48,7 @@ export default function Offers() {
 
         const q = query(
           listingsRef,
-          where("userRef", "==", authId),
+          // where("userRef", "==", auth.currentUser.uid),
           orderBy("timestamp", "desc")
         );
 
@@ -69,7 +68,7 @@ export default function Offers() {
         setListings(listings);
         setLoading(false);
       } catch (error) {
-        toast.error("Could not fetch listings");
+        toast.error("Please login first");
       }
     };
 
@@ -115,44 +114,34 @@ export default function Offers() {
     setSearch(e.target.value);
   };
 
-
- 
-
-  const ratingFilter = () =>{
- 
+  const ratingFilter = () => {
     // setListings(prevData => [...prevData].sort((a, b) => a.rate - b.rate));
     console.log(listings);
-  
-    const sortedData = [...listings].sort((a, b) => b.data.rating - a.data.rating);
+
+    const sortedData = [...listings].sort(
+      (a, b) => b.data.rating - a.data.rating
+    );
     setSearchListing(sortedData);
-   console.log(sortedData);
-  }
-  
+    console.log(sortedData);
+  };
 
-const salaryFilterAscending = () =>{
- 
-  // setListings(prevData => [...prevData].sort((a, b) => a.rate - b.rate));
-  console.log(listings);
+  const salaryFilterAscending = () => {
+    // setListings(prevData => [...prevData].sort((a, b) => a.rate - b.rate));
+    console.log(listings);
 
-  const sortedData = [...listings].sort((a, b) => a.data.rate - b.data.rate);
-  setSearchListing(sortedData);
- console.log(sortedData);
-}
+    const sortedData = [...listings].sort((a, b) => a.data.rate - b.data.rate);
+    setSearchListing(sortedData);
+    console.log(sortedData);
+  };
 
-const salaryFilterDescending = () =>{
- 
-  // setListings(prevData => [...prevData].sort((a, b) => a.rate - b.rate));
-  console.log(listings);
+  const salaryFilterDescending = () => {
+    // setListings(prevData => [...prevData].sort((a, b) => a.rate - b.rate));
+    console.log(listings);
 
-  const sortedData = [...listings].sort((a, b) => b.data.rate - a.data.rate);
-  setSearchListing(sortedData);
- console.log(sortedData);
-
-
-
-
-}
-
+    const sortedData = [...listings].sort((a, b) => b.data.rate - a.data.rate);
+    setSearchListing(sortedData);
+    console.log(sortedData);
+  };
 
   const searchFilter = (search) => {
     if (search === "") {
@@ -318,98 +307,74 @@ const salaryFilterDescending = () =>{
             </div>
           </Card>
 
-         
-
-
-
-
-
-
-
-
-
           <Card>
-      <div className="card-container">
-        <ul className="categoryListing">
-        <li>
-            <img
-              src={distanceIcon}
-              alt="home"
-              className="your-element"
-              onClick={() => shortCutSearch('distance')}
-            />
-          </li>
-          <li>
-            <img
-              src={incSalaryIcon}
-              // ascending
-              alt="home"
-              className="your-element"
-              onClick={() => salaryFilterAscending()}
-            />
-          </li>
+            <div className="card-container">
+              <ul className="categoryListing">
+                <li>
+                  <img
+                    src={distanceIcon}
+                    alt="home"
+                    className="your-element"
+                    onClick={() => shortCutSearch("distance")}
+                  />
+                </li>
+                <li>
+                  <img
+                    src={incSalaryIcon}
+                    // ascending
+                    alt="home"
+                    className="your-element"
+                    onClick={() => salaryFilterAscending()}
+                  />
+                </li>
 
+                <li>
+                  <img
+                    src={decSalaryIcon}
+                    // descending
+                    alt="home"
+                    className="your-element"
+                    onClick={() => salaryFilterDescending()}
+                  />
+                </li>
 
-          <li>
-            <img
-              src={decSalaryIcon}
-              // descending
-              alt="home"
-              className="your-element"
-              onClick={() => salaryFilterDescending()}
-            />
-          </li>
+                <li>
+                  <img
+                    src={starFilterIcon}
+                    // rating filter
+                    alt="home"
+                    className="your-element"
+                    onClick={() => ratingFilter()}
+                  />
+                </li>
+                <li>
+                  <img
+                    src={plumberIcon}
+                    alt="home"
+                    className="your-element"
+                    onClick={() => shortCutSearch("plumber")}
+                  />
+                </li>
 
-          <li>
-            <img
-              src={starFilterIcon}
-              // rating filter
-              alt="home"
-              className="your-element"
-              onClick={() => ratingFilter()}
-            />
-          </li>
-          <li>
-            <img
-              src={plumberIcon}
-              alt="home"
-              className="your-element"
-              onClick={() => shortCutSearch('plumber')}
-            />
-            
-          </li>
-         
-          <li>
-            <img
-              src={carpenterIcon}
-              alt="home"
-              className="your-element"
-              onClick={() => shortCutSearch('carpenter')}
-            />
-          </li>
-          <li>
-            <img
-              src={painterIcon}
-              alt="home"
-              className="your-element"
-              onClick={() => shortCutSearch('painter')}
-            />
-          </li>
-         
-         
-        </ul>
-      </div>
-    </Card>
-
-
-
-
-
-
-
-
-
-
+                <li>
+                  <img
+                    src={carpenterIcon}
+                    alt="home"
+                    className="your-element"
+                    onClick={() => shortCutSearch("carpenter")}
+                  />
+                </li>
+                <li>
+                  <img
+                    src={painterIcon}
+                    alt="home"
+                    className="your-element"
+                    onClick={() => shortCutSearch("painter")}
+                  />
+                </li>
+              </ul>
+            </div>
+          </Card>
         </div>
       </header>
       {loading ? (

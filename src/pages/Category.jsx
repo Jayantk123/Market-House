@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   collection,
   getDocs,
@@ -14,6 +14,7 @@ import { toast } from "react-toastify";
 import Spinner from "../Components/Spinner";
 import ListingItem from "../Components/ListingItem";
 import Card from "./Card";
+import { getAuth, updateProfile } from "firebase/auth";
 
 export default function Category() {
   const [listings, setListings] = useState(null);
@@ -24,7 +25,8 @@ export default function Category() {
   
 
   const params = useParams();
-
+  const auth = getAuth();
+const navigate = useNavigate();
   const onChange = (e) => {
     setSearch(e.target.value);
   };
@@ -67,6 +69,7 @@ export default function Category() {
         const q = query(
           listingsRef,
           where("type", "==", params.categoryName),
+          // where("userRef", "==", auth.currentUser.uid),
           orderBy("timestamp", "desc"),
           limit(10)
         );
@@ -88,7 +91,10 @@ export default function Category() {
         setListings(listings);
         setLoading(false);
       } catch (error) {
-        toast.error("Could not fetch listings");
+        toast.error("Please login first");
+      
+          navigate("/sign-in");
+        
       }
     };
 

@@ -111,7 +111,7 @@ export default function Signin() {
           </button>
          
           </div> */}
-       <OAuth/>
+       <OAuth />
        <br />
 
        <br /><br /><br /><br />

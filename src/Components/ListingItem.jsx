@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { ReactComponent as DeleteIcon } from "../assets/svg/deleteIcon.svg";
 import { ReactComponent as EditIcon } from "../assets/svg/editIcon.svg";
@@ -6,9 +6,6 @@ import mapIcon from "../assets/jpg/maplogo.jpeg";
 import Card from "../pages/Card";
 
 export default function ListingItem({ listing, id, dis, onEdit, onDelete }) {
-  // console.log(dis + " abc" + id);
-  // console.log(listing);
-  // console.log(listing.location.split(",")[0]);
   return (
     <Card>
       <li className="categoryListing">
@@ -24,23 +21,13 @@ export default function ListingItem({ listing, id, dis, onEdit, onDelete }) {
           />
 
           <div className="categoryListingDetails">
-            <p className="categoryListingName">
-              {listing.name}
-              {/* <p className="listingType">{listing.rating}🌟</p> */}
-            </p>
+            <p className="categoryListingName">{listing.name}</p>
 
-            {/* <p className="categoryListingLocation">Ph No. : { listing.number}</p> */}
-            {/* <p className="categoryListingLocation">Experience : { listing.experience}</p> */}
-            {/* <p className="categoryListingLocation">Age : { listing.age}</p> */}
             <p className="listingType">{listing.rating}🌟</p>
             <p className="starRating">{listing.work}</p>
-            {/* <p className="starRating">3.5 🌟</p> */}
 
             <br />
-            {/* {dis && <p className="starRating">{dis.toFixed(0)} km</p>} */}
-            {/* <p className="categoryListingLocation">Experience : { listing.experience}</p> */}
 
-            {/* <p className>{listing.work}</p> */}
             <div style={{ display: "flex", alignItems: "center" }}>
               {dis && <p className="starRating">{dis.toFixed(0)} km</p>}
               <img src={mapIcon} alt="" style={{ marginRight: "8px" }} />
@@ -55,27 +42,7 @@ export default function ListingItem({ listing, id, dis, onEdit, onDelete }) {
             <p className="ListingPrice">
               ₹ {listing.rate === null ? 0 : listing.rate}{" "}
               {listing.type === "daily" ? "/day" : "/month"}
-              {/* ₹{" "}
-              {listing.rate===null?0:listing.rate
-                    .toString()
-                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-              }
-              { " / Month"} */}
             </p>
-            {/* <div className="categoryListingInfoDiv">
-            <img src={bedIcon} alt="bed" />
-            <p className="categoryListingInfoText">
-              {listing.bedrooms > 1
-                ? `${listing.bedrooms} Bedrooms`
-                : "1 Bedroom"}
-            </p>
-            <img src={bathtubIcon} alt='bath' />
-            <p className="categoryListingInfoText">
-            {listing.bathrooms > 1
-                ? `${listing.bathrooms} Bathrooms`
-                : "1 Bathrooms"}
-            </p>
-          </div> */}
           </div>
         </Link>
 

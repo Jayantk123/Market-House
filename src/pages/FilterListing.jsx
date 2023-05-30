@@ -46,10 +46,10 @@ export default function FilterListing() {
         // create query
 
         const q = query(
-          listingsRef,
-          where("userRef", "==", authId),
-          //   where("work", "==", currentDistance),
-          orderBy("timestamp", "desc")
+          listingsRef
+          // where("userRef", "==", auth.currentUser.uid),
+          // //   where("work", "==", currentDistance),
+          // orderBy("timestamp", "desc")
         );
 
         // execute query
@@ -97,7 +97,7 @@ export default function FilterListing() {
 
         //
       } catch (error) {
-        toast.error("Could not fetch listings");
+        toast.error("Please login first");
       }
     };
 

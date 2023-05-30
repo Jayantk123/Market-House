@@ -439,12 +439,13 @@ button {
 }
 .googlelisting {
   display: flex;
-  /* justify-content: space-between; */
+  justify-content: center;
   align-items: center;
-  margin-left: 7rem;
   position: relative;
   margin-top: -2rem;
+ 
 }
+
 .txt-center{
   text-align: center;
 }
@@ -784,6 +785,15 @@ button {
   margin-top: 3rem;
   font-weight: 600;
 }
+.cartHeadingText {
+  margin-top: 1rem;
+  font-weight: 600;
+}
+.cartWage{
+  margin-right: "1rem";
+  font-family: 'Montserrat', sans-serif;
+
+}
 
 .lisitingsList {
   padding: 0;
@@ -819,7 +829,7 @@ button {
   align-items: center;
 }
 .govSchemes{
-  padding: 0.9rem 3rem;
+  padding: 0.9rem 2rem;
   background-color: #ffffff;
   font-weight: 600;
   border-radius: 1rem;
@@ -877,6 +887,24 @@ button {
 .modal-body {
   margin-top: 20px;
 }
+
+@media (max-width: 767px) {
+  .modal-content {
+    width: 90%; /* Adjust the width as per your preference */
+  }
+  
+  .modal-header {
+    text-align: center; /* Center align the header text */
+  }
+  
+  .close-button {
+    float: none; /* Remove float to center align the close button */
+  }
+}
+
+
+
+
 
 
 

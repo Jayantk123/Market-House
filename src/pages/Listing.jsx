@@ -11,7 +11,8 @@ import { getAuth } from "firebase/auth";
 import { db } from "../firebase.config";
 import { useLocation } from "react-router-dom";
 import schemeData from "../assets/govSchemes/govSchemesData.json";
-
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from "react-responsive-carousel";
 // import Card from "../Components/Card";
 import Spinner from "../Components/Spinner";
 import shareIcon from "../assets/svg/shareIcon.svg";
@@ -23,7 +24,7 @@ import CartIcon from "../Components/CartIcon";
 import Modal from "react-modal";
 Modal.setAppElement("#root");
 
-// import Rating from "rc-ratings"; 
+// import Rating from "rc-ratings";
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 export default function Listing() {
   const [listing, setListing] = useState(null);
@@ -31,7 +32,7 @@ export default function Listing() {
   const [shareLinkCopied, setSetShareLinkCopied] = useState(false);
   const [buy, setBuy] = useState(false);
   const [eligibleScheme, setEligibleScheme] = useState(" ");
-
+  const [activeIndex, setActiveIndex] = useState(0);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const openModal = () => {
     setModalIsOpen(true);
@@ -61,7 +62,11 @@ export default function Listing() {
     };
 
     fetchListing();
+    const interval = setInterval(() => {
+      setActiveIndex((prevIndex) => (prevIndex + 1) % 2);
+    }, 2000);
 
+    return () => clearInterval(interval);
     // Handle the eligible schemes as needed (e.g., display them on the page)
   }, [navigate, params.listingId]);
 
@@ -210,24 +215,50 @@ export default function Listing() {
               remove
             </button>
           )}
+          {/* { auth.currentUser!==null? */}
           <button className="govSchemes" onClick={eligibleGovSchemes}>
             GovSchemes
           </button>
+          :<></>
+          {/* } */}
         </div>
 
         <h2 className="listingLocationTitle">Feedback</h2>
-        <Card>
-          <p>
-            "Great job on completing the project ahead of schedule, your hard
-            work is much appreciated!"
-          </p>
-        </Card>
-        <Card>
-          <p>
-            ""Your presentation was well-organized and engaging, you did a great
-            job communicating the key points effectively."
-          </p>
-        </Card>
+
+        <Carousel
+          autoPlay
+          interval={3000}
+          infiniteLoop
+          showThumbs={false}
+          showStatus={false}
+        >
+          <div>
+            <Card>
+              <p>
+                "Great job on completing the project ahead of schedule, your
+                hard work is much appreciated!"
+              </p>
+            </Card>
+          </div>
+          <div>
+            <Card>
+              <p>
+                "Your presentation was well-organized and engaging, you did a
+                great job communicating the key points effectively."
+              </p>
+            </Card>
+          </div>
+          <div>
+            <Card>
+              <p>
+                <p>
+                  "Your dedication and attention to detail in this project are
+                  commendable. Well done!"
+                </p>
+              </p>
+            </Card>
+          </div>
+        </Carousel>
 
         <p className="listingLocationTitle">Location</p>
 

@@ -21,7 +21,7 @@ export default function Explore() {
       <img src={kaamdhanda} alt="kaamdhandha logo" className="kaamlogo" />
 
       {/* slider */}
-      <Carousel autoPlay interval={3000} infiniteLoop showThumbs={false}>
+      <Carousel autoPlay interval={3000} infiniteLoop showThumbs={false} showStatus={false}>
         <div>
           <img src={carosalImage1} alt="img1" />
         </div>
