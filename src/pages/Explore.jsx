@@ -11,6 +11,7 @@ import plumberIcon from "../assets/png/plumber.png";
 import carpenterIcon from "../assets/png/carpenter.png";
 import painterIcon from "../assets/png/painter.png";
 import constIcon from "../assets/png/const.png";
+import kaamdhandaLogo from "../assets/svg/kaamdhandhaLogo.svg";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 
@@ -18,7 +19,8 @@ export default function Explore() {
   return (
     <>
       {/* logo */}
-      <img src={kaamdhanda} alt="kaamdhandha logo" className="kaamlogo" />
+      <img src={kaamdhandaLogo} alt="kaamdhandha logo" className="kaamlogo" />
+      {/* <img src={kaamdhanda} alt="kaamdhandha logo" className="kaamlogo" /> */}
 
       {/* slider */}
       <Carousel autoPlay interval={3000} infiniteLoop showThumbs={false} showStatus={false}>
