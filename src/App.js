@@ -2,6 +2,7 @@ import React, {Suspense} from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Explore from "./pages/Explore";
 import Offers from "./pages/Offers";
+import ChatBot from 'react-simple-chatbot';
 import ForgotPassword from "./pages/ForgotPassword";
 import Profile from "./pages/Profile";
 import Signin from "./pages/Signin";

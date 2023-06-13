@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import daily from "../assets/jpg/daily.jpg";
+import daily from "../assets/jpg/wimg2.jpg";
 import salary from "../assets/jpg/salary.jpg";
 import carosalImage1 from "../assets/jpg/carosal1.jpg";
 import carosalImage2 from "../assets/jpg/carosal2.jpg";
