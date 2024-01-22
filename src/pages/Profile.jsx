@@ -37,6 +37,9 @@ export default function Profile() {
  
 
   useEffect(() => {
+    if(auth.currentUser.displayName===null) {
+      toast.error("Please edit your details first")
+    }
     const fetchUserListings = async () => {
       const listingsRef = collection(db, "listings");
 
@@ -165,7 +168,7 @@ const onEdit = (listingId)=>navigate(`/edit-listing/${listingId}`)
                 setChangeDetails((prevState) => !prevState);
               }}
             >
-              {changeDetails ? "done" : "change"}
+              {changeDetails ? "Done" : "Edit Profile"}
             </p>
           </div>
 
@@ -178,6 +181,7 @@ const onEdit = (listingId)=>navigate(`/edit-listing/${listingId}`)
                 disabled={!changeDetails}
                 value={name}
                 onChange={onChange}
+                placeholder="Name"
               />
               <input
                 type="email"
@@ -188,6 +192,7 @@ const onEdit = (listingId)=>navigate(`/edit-listing/${listingId}`)
                 disabled
                 value={email}
                 onChange={onChange}
+                placeholder={email!==null?"Email":"Email (Optional)"}
               />
             </form>
           </div>

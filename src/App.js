@@ -7,6 +7,7 @@ import ForgotPassword from "./pages/ForgotPassword";
 import Profile from "./pages/Profile";
 import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
+import SignupPhone from "./pages/SignupPhone";
 import Category from "./pages/Category";
 import Navbar from "./Components/Navbar";
 import { ToastContainer } from "react-toastify";
@@ -43,6 +44,8 @@ export default function App() {
           </Route>
           <Route path="/sign-in" element={<Signin />} />
           <Route path="/sign-up" element={<Signup />} />
+          <Route path="/sign-in-phone" element={<SignupPhone />} />
+
           <Route path="/forgot-password" element={<ForgotPassword />} />
           {/* <Route path="/create-listing" element={<CreateListing />} /> */}
           <Route path="/create-worker-listing-hindi" element={<CreateWorkerListingHindi />} />

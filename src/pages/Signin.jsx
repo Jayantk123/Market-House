@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ReactComponent as ArrowRightIcon } from "../assets/svg/keyboardArrowRightIcon.svg";
 import visibilityIcon from "../assets/svg/visibilityIcon.svg";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword, signInWithPhoneNumber } from "firebase/auth";
 import { toast } from "react-toastify";
 import OAuth from "../Components/OAuth";
 import Plumber from "../assets/jpg/pilumber.jpeg";
@@ -35,6 +35,8 @@ export default function Signin() {
         email,
         password
       );
+
+    
       if (userCredential.user) {
         navigate("/");
       }
@@ -94,18 +96,23 @@ export default function Signin() {
           <Link to="/forgot-password" className="forgotPasswordLink">
             Forgot Password
           </Link>
-
+        
           <div className="signInBar">
             <button className="primaryButton createListingButton">
               Sign In
             </button>
+           
             {/* <p className="signInText"></p>
             <button className="signInButton">
               <ArrowRightIcon fill="#ffffff" width="34px" height="34px" />
             </button> */}
           </div>
+          <Link to="/sign-in-phone" className="signInphone">
+            Sign In with phone number
+          </Link>
         </form>
         <p className="or">or</p>
+        
         {/* 
         <div className="signInBar">
           <button  className="primaryButton createListingButton">

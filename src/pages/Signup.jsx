@@ -18,6 +18,7 @@ export default function Signup() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    number:"",
     password: "",
     confirmpassword: "",
   });
@@ -99,13 +100,23 @@ export default function Signup() {
 
           {/* email */}
           <input
-            type="email"
+            type="number"
             className="emailInput"
             placeholder="Email"
             value={email}
             id="email"
             onChange={onChange}
           />
+
+{/* <input
+            type="number"
+            className="numberInput"
+            placeholder="Number"
+            value={number}
+            id="number"
+            onChange={onChange}
+          /> */}
+
 
           {/* password */}
           <div className="passwordInputDiv">
