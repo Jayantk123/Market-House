@@ -48,7 +48,8 @@ const [phoneNumber,setPhoneNumber]=useState('');
 
     const appVerifier = window.recaptchaVerifier;
 
-    const formatPh = "+" + phoneNumber;
+    const formatPh = "+91" + phoneNumber;
+    console.log(formatPh);
 
     const userCredential =  signInWithPhoneNumber(auth, formatPh, appVerifier)
       .then((confirmationResult) => {
@@ -89,6 +90,21 @@ const [phoneNumber,setPhoneNumber]=useState('');
         setLoading(false);
       });
   }
+  const formatPhoneNumber = (input) => {
+    // Implement your phone number formatting logic here
+    // For example, you can add spaces or dashes for better readability
+    // This is a simple example; you might want to use a library for more complex formatting
+    return input.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
+  };
+  const handleChange = (e) => {
+    const rawInput = e.target.value;
+    // Remove non-numeric characters from the input
+    const numericInput = rawInput.replace(/\D/g, '');
+    // Format the phone number
+    const formattedNumber = formatPhoneNumber(numericInput);
+    // Update the state
+    setPhoneNumber(formattedNumber);
+  };
 
   return (
     <div className="pageContainer">
@@ -149,7 +165,20 @@ const [phoneNumber,setPhoneNumber]=useState('');
                 >
                   Verify your phone number
                 </label> */}
-                <PhoneInput country={"in"} value={phoneNumber} onChange={setPhoneNumber} />
+                {/* <PhoneInput country={"in"} value={phoneNumber} onChange={setPhoneNumber} /> */}
+
+
+                <input
+            type="text  "
+            className="emailInput"
+            placeholder="Phone No. Ex-1234567890"
+            value={phoneNumber}
+            country={"in"}
+            maxLength={10}
+            id="email"
+            onChange={handleChange}
+          />
+
                 {/* <button
                   onClick={onSignup}
                   className="bg-emerald-600 w-full flex gap-1 items-center justify-center py-2.5 text-white rounded"

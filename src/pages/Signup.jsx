@@ -100,7 +100,7 @@ export default function Signup() {
 
           {/* email */}
           <input
-            type="number"
+            type="email"
             className="emailInput"
             placeholder="Email"
             value={email}
