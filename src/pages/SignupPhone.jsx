@@ -6,7 +6,6 @@ import { doc, setDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "../firebase.config";
 import OtpInput from "otp-input-react";
 import { useState } from "react";
-import "react-phone-input-2/lib/style.css";
 import OAuth from "../Components/OAuth";
 import { getAuth, RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 import { Toast } from "react-bootstrap";
