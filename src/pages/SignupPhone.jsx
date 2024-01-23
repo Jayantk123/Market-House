@@ -23,6 +23,7 @@ const [phoneNumber,setPhoneNumber]=useState('');
   const auth = getAuth();
   const navigate = useNavigate();
 
+  auth.settings.appVerificationDisabledForTesting = false;
 
   function onCaptchVerify() {
     if (!window.recaptchaVerifier) {
