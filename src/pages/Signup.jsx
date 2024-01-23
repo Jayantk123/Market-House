@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ReactComponent as ArrowRightIcon } from "../assets/svg/keyboardArrowRightIcon.svg";
 import visibilityIcon from "../assets/svg/visibilityIcon.svg";
-import { toast } from "react-toastify";
+import {toast} from 'react-toastify'
 
 import {
   getAuth,
@@ -18,7 +18,7 @@ export default function Signup() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    number: "",
+    number:"",
     password: "",
     confirmpassword: "",
   });
@@ -46,10 +46,7 @@ export default function Signup() {
           password
         );
 
-        sessionStorage.setItem(
-          "Auth_Token",
-          userCredential._tokenResponse.refreshToken
-        );
+        sessionStorage.setItem('Auth_Token',userCredential._tokenResponse.refreshToken);
         console.log(userCredential._tokenResponse.refreshToken);
         const user = userCredential.user;
 
@@ -79,7 +76,7 @@ export default function Signup() {
         });
       }
     } catch (error) {
-      toast.error("Bad User Credentials");
+      toast.error('Bad User Credentials')
     }
   };
 
@@ -111,7 +108,7 @@ export default function Signup() {
             onChange={onChange}
           />
 
-          {/* <input
+{/* <input
             type="number"
             className="numberInput"
             placeholder="Number"
@@ -119,6 +116,7 @@ export default function Signup() {
             id="number"
             onChange={onChange}
           /> */}
+
 
           {/* password */}
           <div className="passwordInputDiv">
@@ -175,7 +173,7 @@ export default function Signup() {
           </div>
         </form>
 
-        <OAuth />
+       <OAuth/>
         <Link to="/sign-in" className="registerLink">
           Sign In Instead
         </Link>
